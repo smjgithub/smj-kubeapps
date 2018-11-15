@@ -15,13 +15,13 @@ service:
   labels: {}
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
-  path: /
+  path: /cerebro
   hosts:
-    - chart-example.local
+    - k8s-cluster
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
