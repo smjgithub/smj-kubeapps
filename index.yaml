@@ -3,9 +3,9 @@ entries:
   cerebro:
   - apiVersion: v1
     appVersion: 0.8.1
-    created: 2018-11-15T10:25:31.162138+03:00
+    created: 2018-11-15T14:28:29.800569+03:00
     description: A Helm chart for Cerebro - a web admin tool that replaces Kopf.
-    digest: 896a10a13f4a11b1e94fa1b11209be91b67d80b54401708085a80cecd9eb36f3
+    digest: 87f96497f5b5c812af13405dff022ffdf302f784d2439f4266486bbd78a2dcb9
     home: https://github.com/lmenezes/cerebro
     maintainers:
     - email: david@davidkarlsen.com
@@ -20,7 +20,7 @@ entries:
   elasticsearch-exporter:
   - apiVersion: v1
     appVersion: 1.0.2
-    created: 2018-11-15T10:25:31.162934+03:00
+    created: 2018-11-15T14:28:29.80123+03:00
     description: Elasticsearch stats exporter for Prometheus
     digest: 8cae03b67ddb58e4c9ab5b207317baaf84c7e6f6be7411febadd84cedbc9370f
     home: https://github.com/justwatchcom/elasticsearch_exporter
@@ -39,7 +39,7 @@ entries:
     version: 0.4.1
   grafana:
   - appVersion: 5.3.2
-    created: 2018-11-15T10:25:31.167266+03:00
+    created: 2018-11-15T14:28:29.80294+03:00
     description: The leading tool for querying and visualizing time series and metrics.
     digest: e28fcad92be8ece19d25af068dcc862dfa3708f25dfad2df8a971ee6f269946a
     engine: gotpl
@@ -59,7 +59,7 @@ entries:
     version: 1.17.5
   prometheus:
   - appVersion: 2.5.0
-    created: 2018-11-15T10:25:31.168734+03:00
+    created: 2018-11-15T14:28:29.804681+03:00
     description: Prometheus is a monitoring system and time series database.
     digest: 5dd09267c0f9429036c0383d5d798ae593599b0db37dc23e2dac7e8ef6927fa6
     engine: gotpl
@@ -81,4 +81,4 @@ entries:
     urls:
     - prometheus/prometheus-7.4.1.tgz
     version: 7.4.1
-generated: 2018-11-15T10:25:31.159823+03:00
+generated: 2018-11-15T14:28:29.79988+03:00
