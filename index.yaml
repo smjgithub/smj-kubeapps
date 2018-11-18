@@ -3,7 +3,7 @@ entries:
   cerebro:
   - apiVersion: v1
     appVersion: 0.8.1
-    created: 2018-11-15T17:06:24.912235+03:00
+    created: 2018-11-18T10:10:49.552438+03:00
     description: A Helm chart for Cerebro - a web admin tool that replaces Kopf.
     digest: b1940d7af8ed238e43c47ceda9428f56cc00aa8d365cfcdeb59c353de9c1bd2e
     home: https://github.com/lmenezes/cerebro
@@ -20,7 +20,7 @@ entries:
   elasticsearch-exporter:
   - apiVersion: v1
     appVersion: 1.0.2
-    created: 2018-11-15T17:06:24.912779+03:00
+    created: 2018-11-18T10:10:49.553049+03:00
     description: Elasticsearch stats exporter for Prometheus
     digest: 8cae03b67ddb58e4c9ab5b207317baaf84c7e6f6be7411febadd84cedbc9370f
     home: https://github.com/justwatchcom/elasticsearch_exporter
@@ -37,9 +37,28 @@ entries:
     urls:
     - elasticsearch-exporter/elasticsearch-exporter-0.4.1.tgz
     version: 0.4.1
+  fluentd:
+  - apiVersion: v1
+    appVersion: v2.3.1
+    created: 2018-11-18T10:10:49.554011+03:00
+    description: A Fluentd Elasticsearch Helm chart for Kubernetes.
+    digest: e9d486585cd7b125840bbb357e7748b5910ed22b5c8557139f393307364fcad4
+    home: https://www.fluentd.org/
+    icon: https://raw.githubusercontent.com/fluent/fluentd-docs/master/public/logo/Fluentd_square.png
+    maintainers:
+    - email: pete.brown@powerhrg.com
+      name: rendhalver
+    name: fluentd
+    sources:
+    - https://quay.io/repository/coreos/fluentd-kubernetes
+    - https://github.com/coreos/fluentd-kubernetes-daemonset
+    - https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html
+    urls:
+    - fluentd/fluentd-1.0.0.tgz
+    version: 1.0.0
   grafana:
   - appVersion: 5.3.2
-    created: 2018-11-15T17:06:24.913875+03:00
+    created: 2018-11-18T10:10:49.555279+03:00
     description: The leading tool for querying and visualizing time series and metrics.
     digest: e28fcad92be8ece19d25af068dcc862dfa3708f25dfad2df8a971ee6f269946a
     engine: gotpl
@@ -57,9 +76,48 @@ entries:
     urls:
     - grafana/grafana-1.17.5.tgz
     version: 1.17.5
+  kube-state-metrics:
+  - apiVersion: v1
+    appVersion: 1.4.0
+    created: 2018-11-18T10:10:49.555922+03:00
+    description: Install kube-state-metrics to generate and expose cluster-level metrics
+    digest: 6f2eed2e10eca76a9f43e0d2e3b31263781a4cacd5c895531be8feeec5848f8f
+    home: https://github.com/kubernetes/kube-state-metrics/
+    keywords:
+    - metric
+    - monitoring
+    - prometheus
+    maintainers:
+    - email: jose@armesto.net
+      name: fiunchinho
+    name: kube-state-metrics
+    sources:
+    - https://github.com/kubernetes/kube-state-metrics/
+    urls:
+    - kube-state-metrics/kube-state-metrics-0.11.0.tgz
+    version: 0.11.0
+  metricbeat:
+  - apiVersion: v1
+    appVersion: 6.5.0
+    created: 2018-11-18T10:10:49.556822+03:00
+    description: A Helm chart to collect Kubernetes logs with metricbeat
+    digest: fa068603ab92a6174cb4f8b673c5ba7cd9ddf837b0aea8442fce0a131478d558
+    home: https://www.elastic.co/products/beats/metricbeat
+    icon: https://www.elastic.co/assets/blt47799dcdcf08438d/logo-elastic-beats-lt.svg
+    maintainers:
+    - email: atushi.k@gmail.com
+      name: at-k
+    - email: ykuoka@gmail.com
+      name: mumoshu
+    name: metricbeat
+    sources:
+    - https://www.elastic.co/guide/en/beats/metricbeat/current/index.html
+    urls:
+    - metricbeat/metricbeat-0.3.3.tgz
+    version: 0.3.3
   prometheus:
   - appVersion: 2.5.0
-    created: 2018-11-15T17:06:24.915579+03:00
+    created: 2018-11-18T10:10:49.558876+03:00
     description: Prometheus is a monitoring system and time series database.
     digest: 5dd09267c0f9429036c0383d5d798ae593599b0db37dc23e2dac7e8ef6927fa6
     engine: gotpl
@@ -81,4 +139,4 @@ entries:
     urls:
     - prometheus/prometheus-7.4.1.tgz
     version: 7.4.1
-generated: 2018-11-15T17:06:24.910882+03:00
+generated: 2018-11-18T10:10:49.549685+03:00
