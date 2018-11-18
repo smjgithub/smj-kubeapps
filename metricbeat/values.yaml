@@ -14,10 +14,14 @@ daemonset:
     processors:
     - add_cloud_metadata:
     output.file:
+      enabled: false
       path: "/usr/share/metricbeat/data"
       filename: metricbeat
       rotate_every_kb: 10000
       number_of_files: 5
+    output.elasticsearch:
+      enabled: true
+      hosts: ["http://elasticsearch-index:9201"]
   modules:
     system:
       enabled: true
@@ -69,10 +73,14 @@ deployment:
     processors:
     - add_cloud_metadata:
     output.file:
+      enabled: false
       path: "/usr/share/metricbeat/data"
       filename: metricbeat
       rotate_every_kb: 10000
       number_of_files: 5
+    output.elasticsearch:
+      enabled: true
+      hosts: ["http://elasticsearch-index:9201"]
   modules:
     kubernetes:
       enabled: true
