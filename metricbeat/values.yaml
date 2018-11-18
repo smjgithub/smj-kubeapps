@@ -13,12 +13,11 @@ daemonset:
         reload.enabled: false
     processors:
     - add_cloud_metadata:
-    output:
-      file:
-        path: "/usr/share/metricbeat/data"
-        filename: metricbeat
-        rotate_every_kb: 10000
-        number_of_files: 5
+    output.file:
+      path: "/usr/share/metricbeat/data"
+      filename: metricbeat
+      rotate_every_kb: 10000
+      number_of_files: 5
   modules:
     system:
       enabled: true
@@ -69,12 +68,11 @@ deployment:
         reload.enabled: false
     processors:
     - add_cloud_metadata:
-    output:
-      file:
-        path: "/usr/share/metricbeat/data"
-        filename: metricbeat
-        rotate_every_kb: 10000
-        number_of_files: 5
+    output.file:
+      path: "/usr/share/metricbeat/data"
+      filename: metricbeat
+      rotate_every_kb: 10000
+      number_of_files: 5
   modules:
     kubernetes:
       enabled: true
