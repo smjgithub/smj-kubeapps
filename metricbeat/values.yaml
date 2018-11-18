@@ -22,6 +22,7 @@ daemonset:
     output.elasticsearch:
       enabled: true
       hosts: ["http://elasticsearch-index:9201"]
+    setup.kibana: "http://kibana:5601"
   modules:
     system:
       enabled: true
@@ -81,6 +82,7 @@ deployment:
     output.elasticsearch:
       enabled: true
       hosts: ["http://elasticsearch-index:9201"]
+    setup.kibana: "http://kibana:5601"
   modules:
     kubernetes:
       enabled: true
