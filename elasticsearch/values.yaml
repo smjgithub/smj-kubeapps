@@ -101,7 +101,7 @@ master:
     accessMode: ReadWriteOnce
     name: data
     size: "256Mi"
-    # storageClass: "ssd"
+    storageClass: "hostpath"
   antiAffinity: "soft"
   nodeAffinity: {}
   nodeSelector: {}
@@ -134,7 +134,7 @@ data:
     accessMode: ReadWriteOnce
     name: data
     size: "1Gi"
-    # storageClass: "ssd"
+    storageClass: "hostpath"
   terminationGracePeriodSeconds: 3600
   antiAffinity: "soft"
   nodeAffinity: {}
