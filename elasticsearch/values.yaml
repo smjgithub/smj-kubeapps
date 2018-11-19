@@ -78,7 +78,7 @@ client:
   resources:
     limits:
       cpu: "1"
-      memory: "512Mi"
+      # memory: "1024Mi"
     requests:
       cpu: "25m"
       memory: "512Mi"
@@ -109,7 +109,7 @@ master:
   resources:
     limits:
       cpu: "1"
-      memory: "512Mi"
+      # memory: "1024Mi"
     requests:
       cpu: "25m"
       memory: "512Mi"
@@ -128,7 +128,7 @@ data:
   name: data
   exposeHttp: false
   replicas: 2
-  heapSize: "1024m"
+  heapSize: "1536m"
   persistence:
     enabled: true
     accessMode: ReadWriteOnce
@@ -143,10 +143,10 @@ data:
   resources:
     limits:
       cpu: "1"
-      memory: "1024Mi"
+      # memory: "2048Mi"
     requests:
       cpu: "25m"
-      memory: "1024Mi"
+      memory: "1536Mi"
   priorityClassName: ""
   ## (dict) If specified, apply these annotations to each data Pod
   # podAnnotations:
