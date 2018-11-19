@@ -4,12 +4,13 @@
 helm init
 
 echo "Waiting 20 seconds for Tiller pod to initialise"
-for LOOP in {1..20}
+for LOOP in {1..10}
 do
     echo -n "."
     sleep 1
 done
 
+echo ""
 echo "Installing Kubeapps..."
 
 # Install the kubeapps chart with initial custom chart repository

@@ -40,8 +40,10 @@ affinity: {}
 
 
 service:
-  type: ClusterIP
+#  type: ClusterIP
+  type: NodePort
   externalPort: 443
+  nodePort: 8001
 
   ## This allows an override of the heapster service name
   ## Default: {{ .Chart.Name }}
