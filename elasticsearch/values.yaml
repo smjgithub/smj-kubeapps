@@ -1,7 +1,7 @@
 # Default values for elasticsearch.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-appVersion: "6.4.3"
+appVersion: "6.5.0"
 
 ## Define serviceAccount names for components. Defaults to component's fully qualified name.
 ##
@@ -32,8 +32,8 @@ podSecurityPolicy:
     # apparmor.security.beta.kubernetes.io/defaultProfileName: 'runtime/default'
 
 image:
-  repository: "docker.elastic.co/elasticsearch/elasticsearch-oss"
-  tag: "6.4.3"
+  repository: "docker.elastic.co/elasticsearch/elasticsearch"
+  tag: "6.5.0"
   pullPolicy: "IfNotPresent"
   # If specified, use these secrets to access the image
   # pullSecrets:
@@ -45,7 +45,7 @@ initImage:
   pullPolicy: "Always"
 
 cluster:
-  name: "elasticsearch"
+  name: "sky_elastic_01"
   # If you want X-Pack installed, switch to an image that includes it, enable this option and toggle the features you want
   # enabled in the environment variables outlined in the README
   xpackEnable: false
@@ -63,7 +63,7 @@ cluster:
 
 client:
   name: client
-  replicas: 2
+  replicas: 1
   serviceType: ClusterIP
   loadBalancerIP: {}
   loadBalancerSourceRanges: {}
@@ -78,7 +78,7 @@ client:
   resources:
     limits:
       cpu: "1"
-      # memory: "1024Mi"
+      memory: "512Mi"
     requests:
       cpu: "25m"
       memory: "512Mi"
@@ -100,7 +100,7 @@ master:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "4Gi"
+    size: "256Mi"
     # storageClass: "ssd"
   antiAffinity: "soft"
   nodeAffinity: {}
@@ -109,7 +109,7 @@ master:
   resources:
     limits:
       cpu: "1"
-      # memory: "1024Mi"
+      memory: "512Mi"
     requests:
       cpu: "25m"
       memory: "512Mi"
@@ -128,12 +128,12 @@ data:
   name: data
   exposeHttp: false
   replicas: 2
-  heapSize: "1536m"
+  heapSize: "1024m"
   persistence:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "30Gi"
+    size: "1Gi"
     # storageClass: "ssd"
   terminationGracePeriodSeconds: 3600
   antiAffinity: "soft"
@@ -143,10 +143,10 @@ data:
   resources:
     limits:
       cpu: "1"
-      # memory: "2048Mi"
+      memory: "1024Mi"
     requests:
       cpu: "25m"
-      memory: "1536Mi"
+      memory: "1024Mi"
   priorityClassName: ""
   ## (dict) If specified, apply these annotations to each data Pod
   # podAnnotations:
