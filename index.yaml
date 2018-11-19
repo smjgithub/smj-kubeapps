@@ -3,7 +3,7 @@ entries:
   cerebro:
   - apiVersion: v1
     appVersion: 0.8.1
-    created: 2018-11-19T12:27:54.957736+03:00
+    created: 2018-11-19T12:32:09.974617+03:00
     description: A Helm chart for Cerebro - a web admin tool that replaces Kopf.
     digest: b1940d7af8ed238e43c47ceda9428f56cc00aa8d365cfcdeb59c353de9c1bd2e
     home: https://github.com/lmenezes/cerebro
@@ -20,7 +20,7 @@ entries:
   elasticsearch-exporter:
   - apiVersion: v1
     appVersion: 1.0.2
-    created: 2018-11-19T12:27:54.958419+03:00
+    created: 2018-11-19T12:32:09.975226+03:00
     description: Elasticsearch stats exporter for Prometheus
     digest: 8cae03b67ddb58e4c9ab5b207317baaf84c7e6f6be7411febadd84cedbc9370f
     home: https://github.com/justwatchcom/elasticsearch_exporter
@@ -40,7 +40,7 @@ entries:
   fluentd:
   - apiVersion: v1
     appVersion: v2.3.1
-    created: 2018-11-19T12:27:54.959624+03:00
+    created: 2018-11-19T12:32:09.97619+03:00
     description: A Fluentd Elasticsearch Helm chart for Kubernetes.
     digest: e9d486585cd7b125840bbb357e7748b5910ed22b5c8557139f393307364fcad4
     home: https://www.fluentd.org/
@@ -58,7 +58,7 @@ entries:
     version: 1.0.0
   grafana:
   - appVersion: 5.3.2
-    created: 2018-11-19T12:27:54.961111+03:00
+    created: 2018-11-19T12:32:09.97748+03:00
     description: The leading tool for querying and visualizing time series and metrics.
     digest: e28fcad92be8ece19d25af068dcc862dfa3708f25dfad2df8a971ee6f269946a
     engine: gotpl
@@ -79,7 +79,7 @@ entries:
   kube-state-metrics:
   - apiVersion: v1
     appVersion: 1.4.0
-    created: 2018-11-19T12:27:54.961782+03:00
+    created: 2018-11-19T12:32:09.978117+03:00
     description: Install kube-state-metrics to generate and expose cluster-level metrics
     digest: 6f2eed2e10eca76a9f43e0d2e3b31263781a4cacd5c895531be8feeec5848f8f
     home: https://github.com/kubernetes/kube-state-metrics/
@@ -98,9 +98,9 @@ entries:
     version: 0.11.0
   kubernetes-dashboard:
   - appVersion: 1.10.0
-    created: 2018-11-19T12:27:54.962538+03:00
+    created: 2018-11-19T12:32:09.979123+03:00
     description: General-purpose web UI for Kubernetes clusters
-    digest: f855baad6ad9b00502dbcab331f0a415cb0e3d05225442d4ed4c50c0003dcffe
+    digest: ca89175a6264a7124522110658a1183ea689151acdd7821b733476c389c974ee
     home: https://github.com/kubernetes/dashboard
     icon: https://raw.githubusercontent.com/kubernetes/kubernetes/master/logo/logo.svg
     keywords:
@@ -118,7 +118,7 @@ entries:
   metricbeat:
   - apiVersion: v1
     appVersion: 6.5.0
-    created: 2018-11-19T12:27:54.963995+03:00
+    created: 2018-11-19T12:32:09.981299+03:00
     description: A Helm chart to collect Kubernetes logs with metricbeat
     digest: 3b9862613bf37388bc41d8f05ec39217f7e105a671be7758314cb30e91f0720a
     home: https://www.elastic.co/products/beats/metricbeat
@@ -136,7 +136,7 @@ entries:
     version: 0.3.3
   prometheus:
   - appVersion: 2.5.0
-    created: 2018-11-19T12:27:54.96579+03:00
+    created: 2018-11-19T12:32:09.983859+03:00
     description: Prometheus is a monitoring system and time series database.
     digest: 5dd09267c0f9429036c0383d5d798ae593599b0db37dc23e2dac7e8ef6927fa6
     engine: gotpl
@@ -158,4 +158,4 @@ entries:
     urls:
     - prometheus/prometheus-7.4.1.tgz
     version: 7.4.1
-generated: 2018-11-19T12:27:54.955092+03:00
+generated: 2018-11-19T12:32:09.972429+03:00
