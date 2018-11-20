@@ -40,10 +40,10 @@ config:
   basePath: '/'
   restHistorySize: 50
   hosts:
-    - host: "http://elasticsearch-client:9200"
-      name: "SKY Elastic Cluster 01"
-  #  - host:
-  #    name:
+    - host: "http://elasticsearch-ingest:9200"
+      name: "SKY Elastic Cluster 01 (Ingest Nodes)"
+    - host: "http://elasticsearch-query:9200"
+      name: "SKY Elastic Cluster 01 (Query Nodes)"
 
   # Secret used to sign session cookies. If empty it will be replaced with a
   # random 64 length string
