@@ -3,7 +3,7 @@
 # Initialise the helm system by creating the Tiller control pod
 helm init
 
-echo "Waiting 20 seconds for Tiller pod to initialise"
+echo "Waiting 10 seconds for Tiller pod to initialise"
 for LOOP in {1..10}
 do
     echo -n "."

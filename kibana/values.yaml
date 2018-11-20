@@ -30,8 +30,8 @@ files:
     # server.defaultRoute: "/app/kibana"
 
 service:
-  type: ClusterIP
-  externalPort: 443
+  type: LoadBalancer
+  externalPort: 5601
   internalPort: 5601
   # authProxyPort: 5602 To be used with authProxyEnabled and a proxy extraContainer
   ## External IP addresses of service
