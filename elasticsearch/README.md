@@ -30,7 +30,7 @@ If you want to avoid doing that upgrade to Elasticsearch 5.6 first before moving
 This chart will do the following:
 
 * Implemented a dynamically scalable elasticsearch cluster using Kubernetes StatefulSets/Deployments
-* Multi-role deployment: master, client (coordinating) and data nodes
+* Multi-role deployment: master, ingest (coordinating) and data nodes
 * Statefulset Supports scaling down without degrading the cluster
 
 ## Installing the Chart
@@ -61,9 +61,9 @@ The following table lists the configurable parameters of the elasticsearch chart
 
 |              Parameter               |                             Description                             |                       Default                       |
 | ------------------------------------ | ------------------------------------------------------------------- | --------------------------------------------------- |
-| `appVersion`                         | Application Version (Elasticsearch)                                 | `6.4.3`                                             |
-| `image.repository`                   | Container image name                                                | `docker.elastic.co/elasticsearch/elasticsearch-oss` |
-| `image.tag`                          | Container image tag                                                 | `6.4.3`                                             |
+| `appVersion`                         | Application Version (Elasticsearch)                                 | `6.5.0`                                             |
+| `image.repository`                   | Container image name                                                | `docker.elastic.co/elasticsearch/elasticsearch` |
+| `image.tag`                          | Container image tag                                                 | `6.5.0`                                             |
 | `image.pullPolicy`                   | Container pull policy                                               | `IfNotPresent`                                      |
 | `initImage.repository`               | Init container image name                                           | `busybox`                                           |
 | `initImage.tag`                      | Init container image tag                                            | `latest`                                            |
@@ -74,20 +74,20 @@ The following table lists the configurable parameters of the elasticsearch chart
 | `cluster.keystoreSecret`             | Name of secret holding secure config options in an es keystore      | `nil`                                               |
 | `cluster.env`                        | Cluster environment variables                                       | `{MINIMUM_MASTER_NODES: "2"}`                       |
 | `cluster.additionalJavaOpts`         | Cluster parameters to be added to `ES_JAVA_OPTS` environment variable | `""`                                              |
-| `client.name`                        | Client component name                                               | `client`                                            |
-| `client.replicas`                    | Client node replicas (deployment)                                   | `2`                                                 |
-| `client.resources`                   | Client node resources requests & limits                             | `{} - cpu limit must be an integer`                 |
-| `client.priorityClassName`           | Client priorityClass                                                | `nil`                                               |
-| `client.heapSize`                    | Client node heap size                                               | `512m`                                              |
-| `client.podAnnotations`              | Client Deployment annotations                                       | `{}`                                                |
-| `client.nodeSelector`                | Node labels for client pod assignment                               | `{}`                                                |
-| `client.tolerations`                 | Client tolerations                                                  | `[]`                                                |
-| `client.serviceAnnotations`          | Client Service annotations                                          | `{}`                                                |
-| `client.serviceType`                 | Client service type                                                 | `ClusterIP`                                         |
-| `client.loadBalancerIP`              | Client loadBalancerIP                                               | `{}`                                                |
-| `client.loadBalancerSourceRanges`    | Client loadBalancerSourceRanges                                     | `{}`                                                |
-| `client.antiAffinity`                | Client anti-affinity policy                                         | `soft`                                              |
-| `client.nodeAffinity`                | Client node affinity policy                                         | `{}`                                                |
+| `ingest.name`                        | ingest component name                                               | `ingest`                                            |
+| `ingest.replicas`                    | ingest node replicas (deployment)                                   | `2`                                                 |
+| `ingest.resources`                   | ingest node resources requests & limits                             | `{} - cpu limit must be an integer`                 |
+| `ingest.priorityClassName`           | ingest priorityClass                                                | `nil`                                               |
+| `ingest.heapSize`                    | ingest node heap size                                               | `512m`                                              |
+| `ingest.podAnnotations`              | ingest Deployment annotations                                       | `{}`                                                |
+| `ingest.nodeSelector`                | Node labels for ingest pod assignment                               | `{}`                                                |
+| `ingest.tolerations`                 | ingest tolerations                                                  | `[]`                                                |
+| `ingest.serviceAnnotations`          | ingest Service annotations                                          | `{}`                                                |
+| `ingest.serviceType`                 | ingest service type                                                 | `ClusterIP`                                         |
+| `ingest.loadBalancerIP`              | ingest loadBalancerIP                                               | `{}`                                                |
+| `ingest.loadBalancerSourceRanges`    | ingest loadBalancerSourceRanges                                     | `{}`                                                |
+| `ingest.antiAffinity`                | ingest anti-affinity policy                                         | `soft`                                              |
+| `ingest.nodeAffinity`                | ingest node affinity policy                                         | `{}`                                                |
 | `master.exposeHttp`                  | Expose http port 9200 on master Pods for monitoring, etc            | `false`                                             |
 | `master.name`                        | Master component name                                               | `master`                                            |
 | `master.replicas`                    | Master node replicas (deployment)                                   | `2`                                                 |
@@ -125,8 +125,8 @@ The following table lists the configurable parameters of the elasticsearch chart
 | `extraInitContainers`                | Additional init container passed through the tpl 	                 | ``                                                  |
 | `podSecurityPolicy.annotations`      | Specify pod annotations in the pod security policy                  | `{}`                                                |
 | `podSecurityPolicy.enabled`          | Specify if a pod security policy must be created                    | `false`                                             |
-| `serviceAccounts.client.create`      | If true, create the client service account                          | `true`                                              |
-| `serviceAccounts.client.name`        | Name of the client service account to use or create                 | `{{ elasticsearch.client.fullname }}`               |
+| `serviceAccounts.ingest.create`      | If true, create the ingest service account                          | `true`                                              |
+| `serviceAccounts.ingest.name`        | Name of the ingest service account to use or create                 | `{{ elasticsearch.ingest.fullname }}`               |
 | `serviceAccounts.master.create`      | If true, create the master service account                          | `true`                                              |
 | `serviceAccounts.master.name`        | Name of the master service account to use or create                 | `{{ elasticsearch.master.fullname }}`               |
 | `serviceAccounts.data.create`        | If true, create the data service account                            | `true`                                              |
@@ -178,13 +178,13 @@ would degrade performance heavily. The issue is tracked in
 
 More info: https://www.elastic.co/guide/en/elasticsearch/guide/1.x/_important_configuration_changes.html#_minimum_master_nodes
 
-# Client and Coordinating Nodes
+# ingest and Coordinating Nodes
 
-Elasticsearch v5 terminology has updated, and now refers to a `Client Node` as a `Coordinating Node`.
+Elasticsearch v5 terminology has updated, and now refers to a `ingest Node` as a `Coordinating Node`.
 
 More info: https://www.elastic.co/guide/en/elasticsearch/reference/5.5/modules-node.html#coordinating-node
 
-## Enabling elasticsearch interal monitoring
+## Enabling elasticsearch internal monitoring
 Requires version 6.3+ and standard non `oss` repository defined. Starting with 6.3 Xpack is partially free and enabled by default. You need to set a new config to enable the collection of these internal metrics. (https://www.elastic.co/guide/en/elasticsearch/reference/6.3/monitoring-settings.html)
 
 To do this through this helm chart override with the three following changes:

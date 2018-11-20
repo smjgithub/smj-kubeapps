@@ -39,7 +39,9 @@ affinity: {}
 config:
   basePath: '/'
   restHistorySize: 50
-  hosts: []
+  hosts:
+    - host: "http://elasticsearch-client:9200"
+      name: "SKY Elastic Cluster 01"
   #  - host:
   #    name:
 

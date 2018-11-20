@@ -24,11 +24,11 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 
 {{/*
-Create a default fully qualified client name.
+Create a default fully qualified ingest name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
-{{- define "elasticsearch.client.fullname" -}}
-{{ template "elasticsearch.fullname" . }}-{{ .Values.client.name }}
+{{- define "elasticsearch.ingest.fullname" -}}
+{{ template "elasticsearch.fullname" . }}-{{ .Values.ingest.name }}
 {{- end -}}
 
 {{/*
@@ -48,13 +48,13 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 
 {{/*
-Create the name of the service account to use for the client component
+Create the name of the service account to use for the ingest component
 */}}
-{{- define "elasticsearch.serviceAccountName.client" -}}
-{{- if .Values.serviceAccounts.client.create -}}
-    {{ default (include "elasticsearch.client.fullname" .) .Values.serviceAccounts.client.name }}
+{{- define "elasticsearch.serviceAccountName.ingest" -}}
+{{- if .Values.serviceAccounts.ingest.create -}}
+    {{ default (include "elasticsearch.ingest.fullname" .) .Values.serviceAccounts.ingest.name }}
 {{- else -}}
-    {{ default "default" .Values.serviceAccounts.client.name }}
+    {{ default "default" .Values.serviceAccounts.ingest.name }}
 {{- end -}}
 {{- end -}}
 
