@@ -17,6 +17,9 @@ subjects:
   name: {{ template "elasticsearch.serviceAccountName.ingest" . }}
   namespace: {{ .Release.Namespace }}
 - kind: ServiceAccount
+  name: {{ template "elasticsearch.serviceAccountName.query" . }}
+  namespace: {{ .Release.Namespace }}
+- kind: ServiceAccount
   name: {{ template "elasticsearch.serviceAccountName.data" . }}
   namespace: {{ .Release.Namespace }}
 - kind: ServiceAccount

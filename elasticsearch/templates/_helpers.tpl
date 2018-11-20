@@ -32,6 +32,14 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 
 {{/*
+Create a default fully qualified query name.
+We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
+*/}}
+{{- define "elasticsearch.query.fullname" -}}
+{{ template "elasticsearch.fullname" . }}-{{ .Values.query.name }}
+{{- end -}}
+
+{{/*
 Create a default fully qualified data name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
@@ -55,6 +63,17 @@ Create the name of the service account to use for the ingest component
     {{ default (include "elasticsearch.ingest.fullname" .) .Values.serviceAccounts.ingest.name }}
 {{- else -}}
     {{ default "default" .Values.serviceAccounts.ingest.name }}
+{{- end -}}
+{{- end -}}
+
+{{/*
+Create the name of the service account to use for the query component
+*/}}
+{{- define "elasticsearch.serviceAccountName.query" -}}
+{{- if .Values.serviceAccounts.query.create -}}
+    {{ default (include "elasticsearch.query.fullname" .) .Values.serviceAccounts.query.name }}
+{{- else -}}
+    {{ default "default" .Values.serviceAccounts.query.name }}
 {{- end -}}
 {{- end -}}
 
