@@ -11,9 +11,9 @@ data:
   elasticsearch.yml: |-
     cluster.name: {{ .Values.cluster.name }}
 
-    node.data: ${NODE_DATA:true}
-    node.master: ${NODE_MASTER:true}
-    node.ingest: ${NODE_INGEST:true}
+    node.data: ${NODE_DATA:false}
+    node.master: ${NODE_MASTER:false}
+    node.ingest: ${NODE_INGEST:false}
     node.name: ${HOSTNAME}
 
     network.host: 0.0.0.0
