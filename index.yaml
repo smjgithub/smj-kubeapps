@@ -3,7 +3,7 @@ entries:
   cerebro:
   - apiVersion: v1
     appVersion: 0.8.1
-    created: 2018-11-20T16:43:01.208398+03:00
+    created: 2018-11-20T17:49:28.757599+03:00
     description: A Helm chart for Cerebro - a web admin tool that replaces Kopf.
     digest: 197a958b51ab1c73124b60f6bc89bb05d573127888ede3ef12c5efad4a50e49d
     home: https://github.com/lmenezes/cerebro
@@ -19,7 +19,7 @@ entries:
     version: 0.4.0
   elasticsearch:
   - appVersion: 6.5.0
-    created: 2018-11-20T16:43:01.211323+03:00
+    created: 2018-11-20T17:49:28.760566+03:00
     description: Flexible and powerful open source, distributed real-time search and
       analytics engine.
     digest: e2392f0e21b20fba0c379f92104557eb5a7ce9f537f3657ce02e0cbdd05abeb2
@@ -48,7 +48,7 @@ entries:
   elasticsearch-exporter:
   - apiVersion: v1
     appVersion: 1.0.2
-    created: 2018-11-20T16:43:01.212007+03:00
+    created: 2018-11-20T17:49:28.761247+03:00
     description: Elasticsearch stats exporter for Prometheus
     digest: 8cae03b67ddb58e4c9ab5b207317baaf84c7e6f6be7411febadd84cedbc9370f
     home: https://github.com/justwatchcom/elasticsearch_exporter
@@ -68,7 +68,7 @@ entries:
   fluentd:
   - apiVersion: v1
     appVersion: v2.3.1
-    created: 2018-11-20T16:43:01.213241+03:00
+    created: 2018-11-20T17:49:28.762614+03:00
     description: A Fluentd Elasticsearch Helm chart for Kubernetes.
     digest: e9d486585cd7b125840bbb357e7748b5910ed22b5c8557139f393307364fcad4
     home: https://www.fluentd.org/
@@ -86,7 +86,7 @@ entries:
     version: 1.0.0
   grafana:
   - appVersion: 5.3.2
-    created: 2018-11-20T16:43:01.214877+03:00
+    created: 2018-11-20T17:49:28.764094+03:00
     description: The leading tool for querying and visualizing time series and metrics.
     digest: e28fcad92be8ece19d25af068dcc862dfa3708f25dfad2df8a971ee6f269946a
     engine: gotpl
@@ -106,7 +106,7 @@ entries:
     version: 1.17.5
   kibana:
   - appVersion: 6.4.3
-    created: 2018-11-20T16:43:01.216818+03:00
+    created: 2018-11-20T17:49:28.766105+03:00
     description: Kibana is an open source data visualization plugin for Elasticsearch
     digest: ea7d8ad68e3d658a944160161ea2fc8e9ddc0992e735577cd139a2756c359eab
     engine: gotpl
@@ -127,7 +127,7 @@ entries:
   kube-state-metrics:
   - apiVersion: v1
     appVersion: 1.4.0
-    created: 2018-11-20T16:43:01.217517+03:00
+    created: 2018-11-20T17:49:28.766697+03:00
     description: Install kube-state-metrics to generate and expose cluster-level metrics
     digest: 6f2eed2e10eca76a9f43e0d2e3b31263781a4cacd5c895531be8feeec5848f8f
     home: https://github.com/kubernetes/kube-state-metrics/
@@ -146,7 +146,7 @@ entries:
     version: 0.11.0
   kubernetes-dashboard:
   - appVersion: 1.10.0
-    created: 2018-11-20T16:43:01.2197+03:00
+    created: 2018-11-20T17:49:28.768821+03:00
     description: General-purpose web UI for Kubernetes clusters
     digest: cebfab51d7d94be239619692a236541a0f67048ca9edfeb8e1fc13a60114a848
     home: https://github.com/kubernetes/dashboard
@@ -166,7 +166,7 @@ entries:
   metricbeat:
   - apiVersion: v1
     appVersion: 6.5.0
-    created: 2018-11-20T16:43:01.221348+03:00
+    created: 2018-11-20T17:49:28.770482+03:00
     description: A Helm chart to collect Kubernetes logs with metricbeat
     digest: 3b9862613bf37388bc41d8f05ec39217f7e105a671be7758314cb30e91f0720a
     home: https://www.elastic.co/products/beats/metricbeat
@@ -184,7 +184,7 @@ entries:
     version: 0.3.3
   prometheus:
   - appVersion: 2.5.0
-    created: 2018-11-20T16:43:01.22331+03:00
+    created: 2018-11-20T17:49:28.772456+03:00
     description: Prometheus is a monitoring system and time series database.
     digest: 5dd09267c0f9429036c0383d5d798ae593599b0db37dc23e2dac7e8ef6927fa6
     engine: gotpl
@@ -208,9 +208,9 @@ entries:
     version: 7.4.1
   weave-scope:
   - appVersion: 1.9.1
-    created: 2018-11-20T16:43:01.224777+03:00
+    created: 2018-11-20T17:49:28.776187+03:00
     description: A Helm chart for the Weave Scope cluster visualizer.
-    digest: 63ff981b9a97049aa571e88f576ebed0ec39a35704638ec27bac16aaeba793c5
+    digest: 4bb0b09533c0458ebca5193e71cb9d2102247a7a34fc133fb26039fcb211df7f
     home: https://www.weave.works/oss/scope/
     icon: https://avatars1.githubusercontent.com/u/9976052?s=64
     keywords:
@@ -226,4 +226,4 @@ entries:
     urls:
     - weave-scope/weave-scope-0.10.0.tgz
     version: 0.10.0
-generated: 2018-11-20T16:43:01.20544+03:00
+generated: 2018-11-20T17:49:28.755097+03:00
