@@ -92,12 +92,12 @@ spec:
       containers:
       - name: elasticsearch
         env:
-          - name: NODE_DATA
-            value: "false"
-          - name: NODE_INGEST
-            value: "false"
-          - name: NODE_MASTER
-            value: "true"
+        - name: NODE_DATA
+          value: "false"
+        - name: NODE_INGEST
+          value: "false"
+        - name: NODE_MASTER
+          value: "true"
         - name: DISCOVERY_SERVICE
           value: {{ template "elasticsearch.fullname" . }}-discovery
         - name: PROCESSORS
