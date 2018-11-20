@@ -100,7 +100,7 @@ master:
 data:
   name: data
   exposeHttp: false
-  replicas: 2
+  replicas: 1
   heapSize: "1536m"
   persistence:
     enabled: true
