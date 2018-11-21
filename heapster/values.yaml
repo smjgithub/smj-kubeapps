@@ -123,7 +123,7 @@ eventer:
   enabled: false
   flags:
   - "--source=kubernetes:https://kubernetes.default"
-  - "--sink=log"
+  - "--sink=influxdb:http://influxdb.kube-system.svc:8086"
   resources: {}
 #    limits:
 #      cpu: 100m
