@@ -1,5 +1,5 @@
 extraInitContainers: |
-  - name: "plugin-install-s3-repository"
+  - name: "plugin-install-repository-s3"
     image: "docker.elastic.co/elasticsearch/elasticsearch:6.5.0"
     command: ["/bin/bash"]
-    args: ["-c", "yes | /usr/share/elasticsearch/bin/elasticsearch-plugin install s3-repository"]
+    args: ["-c", "yes | /usr/share/elasticsearch/bin/elasticsearch-plugin install repository-s3"]

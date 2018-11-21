@@ -3,7 +3,7 @@ entries:
   cerebro:
   - apiVersion: v1
     appVersion: 0.8.1
-    created: 2018-11-21T10:36:18.367098+03:00
+    created: 2018-11-21T11:48:41.85909+03:00
     description: A Helm chart for Cerebro - a web admin tool that replaces Kopf.
     digest: 197a958b51ab1c73124b60f6bc89bb05d573127888ede3ef12c5efad4a50e49d
     home: https://github.com/lmenezes/cerebro
@@ -19,10 +19,10 @@ entries:
     version: 0.4.0
   elasticsearch:
   - appVersion: 6.5.0
-    created: 2018-11-21T10:36:18.369752+03:00
+    created: 2018-11-21T11:48:41.86239+03:00
     description: Flexible and powerful open source, distributed real-time search and
       analytics engine.
-    digest: e2392f0e21b20fba0c379f92104557eb5a7ce9f537f3657ce02e0cbdd05abeb2
+    digest: 4541c177e171a8f73219fe0de99f4dbdc703b07e90556a9a1499ca14ac061382
     home: https://www.elastic.co/products/elasticsearch
     icon: https://static-www.elastic.co/assets/blteb1c97719574938d/logo-elastic-elasticsearch-lt.svg
     maintainers:
@@ -45,10 +45,33 @@ entries:
     urls:
     - elasticsearch/elasticsearch-1.13.3.tgz
     version: 1.13.3
+  elasticsearch-curator:
+  - apiVersion: v1
+    appVersion: 5.5.4
+    created: 2018-11-21T11:48:41.862791+03:00
+    description: A Helm chart for Elasticsearch Curator
+    digest: 0fb332912891f782555fc49594f3f1acef07a1a2530e48a0d62b4abfe935806a
+    home: https://github.com/elastic/curator
+    keywords:
+    - curator
+    - elasticsearch
+    - elasticsearch-curator
+    maintainers:
+    - email: mestdagh.tom@gmail.com
+      name: tmestdagh
+    - email: gianrubio@gmail.com
+      name: gianrubio
+    name: elasticsearch-curator
+    sources:
+    - https://github.com/kubernetes/charts/elasticsearch-curator
+    - https://github.com/pires/docker-elasticsearch-curator
+    urls:
+    - elasticsearch-curator/elasticsearch-curator-1.0.1.tgz
+    version: 1.0.1
   elasticsearch-exporter:
   - apiVersion: v1
     appVersion: 1.0.2
-    created: 2018-11-21T10:36:18.370401+03:00
+    created: 2018-11-21T11:48:41.863546+03:00
     description: Elasticsearch stats exporter for Prometheus
     digest: 8cae03b67ddb58e4c9ab5b207317baaf84c7e6f6be7411febadd84cedbc9370f
     home: https://github.com/justwatchcom/elasticsearch_exporter
@@ -68,7 +91,7 @@ entries:
   fluentd:
   - apiVersion: v1
     appVersion: v2.3.1
-    created: 2018-11-21T10:36:18.371442+03:00
+    created: 2018-11-21T11:48:41.864717+03:00
     description: A Fluentd Elasticsearch Helm chart for Kubernetes.
     digest: e9d486585cd7b125840bbb357e7748b5910ed22b5c8557139f393307364fcad4
     home: https://www.fluentd.org/
@@ -86,7 +109,7 @@ entries:
     version: 1.0.0
   grafana:
   - appVersion: 5.3.2
-    created: 2018-11-21T10:36:18.372836+03:00
+    created: 2018-11-21T11:48:41.866422+03:00
     description: The leading tool for querying and visualizing time series and metrics.
     digest: e28fcad92be8ece19d25af068dcc862dfa3708f25dfad2df8a971ee6f269946a
     engine: gotpl
@@ -107,7 +130,7 @@ entries:
   heapster:
   - apiVersion: v1
     appVersion: 1.5.2
-    created: 2018-11-21T10:36:18.373218+03:00
+    created: 2018-11-21T11:48:41.868159+03:00
     description: Heapster enables Container Cluster Monitoring and Performance Analysis.
     digest: 719a7497cd4e571e6087da304d0369c9d5970d018f8a6b4018b13c4fd9f9380c
     engine: gotpl
@@ -128,7 +151,7 @@ entries:
     version: 0.3.2
   influxdb:
   - appVersion: "1.6"
-    created: 2018-11-21T10:36:18.374463+03:00
+    created: 2018-11-21T11:48:41.869601+03:00
     description: Scalable datastore for metrics, events, and real-time analytics.
     digest: ff77ba59a3388872f0ba5e18717d1d872f03d4d41d65f06eac92a7813f6b0f79
     engine: gotpl
@@ -148,7 +171,7 @@ entries:
     version: 0.12.1
   kibana:
   - appVersion: 6.4.3
-    created: 2018-11-21T10:36:18.376468+03:00
+    created: 2018-11-21T11:48:41.871951+03:00
     description: Kibana is an open source data visualization plugin for Elasticsearch
     digest: ea7d8ad68e3d658a944160161ea2fc8e9ddc0992e735577cd139a2756c359eab
     engine: gotpl
@@ -169,7 +192,7 @@ entries:
   kube-state-metrics:
   - apiVersion: v1
     appVersion: 1.4.0
-    created: 2018-11-21T10:36:18.378439+03:00
+    created: 2018-11-21T11:48:41.873994+03:00
     description: Install kube-state-metrics to generate and expose cluster-level metrics
     digest: 6f2eed2e10eca76a9f43e0d2e3b31263781a4cacd5c895531be8feeec5848f8f
     home: https://github.com/kubernetes/kube-state-metrics/
@@ -188,7 +211,7 @@ entries:
     version: 0.11.0
   kubernetes-dashboard:
   - appVersion: 1.10.0
-    created: 2018-11-21T10:36:18.381289+03:00
+    created: 2018-11-21T11:48:41.877653+03:00
     description: General-purpose web UI for Kubernetes clusters
     digest: cebfab51d7d94be239619692a236541a0f67048ca9edfeb8e1fc13a60114a848
     home: https://github.com/kubernetes/dashboard
@@ -208,7 +231,7 @@ entries:
   metricbeat:
   - apiVersion: v1
     appVersion: 6.5.0
-    created: 2018-11-21T10:36:18.382762+03:00
+    created: 2018-11-21T11:48:41.879929+03:00
     description: A Helm chart to collect Kubernetes logs with metricbeat
     digest: 3b9862613bf37388bc41d8f05ec39217f7e105a671be7758314cb30e91f0720a
     home: https://www.elastic.co/products/beats/metricbeat
@@ -226,7 +249,7 @@ entries:
     version: 0.3.3
   prometheus:
   - appVersion: 2.5.0
-    created: 2018-11-21T10:36:18.384789+03:00
+    created: 2018-11-21T11:48:41.881703+03:00
     description: Prometheus is a monitoring system and time series database.
     digest: 5dd09267c0f9429036c0383d5d798ae593599b0db37dc23e2dac7e8ef6927fa6
     engine: gotpl
@@ -250,7 +273,7 @@ entries:
     version: 7.4.1
   weave-scope:
   - appVersion: 1.9.1
-    created: 2018-11-21T10:36:18.387103+03:00
+    created: 2018-11-21T11:48:41.883559+03:00
     description: A Helm chart for the Weave Scope cluster visualizer.
     digest: 4bb0b09533c0458ebca5193e71cb9d2102247a7a34fc133fb26039fcb211df7f
     home: https://www.weave.works/oss/scope/
@@ -268,4 +291,4 @@ entries:
     urls:
     - weave-scope/weave-scope-0.10.0.tgz
     version: 0.10.0
-generated: 2018-11-21T10:36:18.363768+03:00
+generated: 2018-11-21T11:48:41.856147+03:00
