@@ -86,9 +86,13 @@ spec:
         volumeMounts:
         - mountPath: /usr/share/elasticsearch/data
           name: data
-{{- if .Values.extraInitContainers }}
-{{ tpl .Values.extraInitContainers . | indent 6 }}
-{{- end }}
+      - name: "plugin-install-repository-s3"
+        image: "docker.elastic.co/elasticsearch/elasticsearch:6.5.0"
+        command: ["/bin/bash"]
+        args: ["-c", "/usr/share/elasticsearch/bin/elasticsearch-plugin install --batch repository-hdfs"]
+#{{- if .Values.extraInitContainers }}
+#{{ tpl .Values.extraInitContainers . | indent 6 }}
+#{{- end }}
       containers:
       - name: elasticsearch
         env:
