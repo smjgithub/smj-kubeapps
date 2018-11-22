@@ -11,15 +11,32 @@ data:
   elasticsearch.yml: |-
     cluster.name: {{ .Values.cluster.name }}
 
-    node.data: ${NODE_DATA:false}
-    node.master: ${NODE_MASTER:false}
-    node.ingest: ${NODE_INGEST:false}
-    node.name: ${HOSTNAME}
+    node:
+      name: ${HOSTNAME}
+      master: ${NODE_MASTER:false}
+      data: ${NODE_DATA:false}
+      ingest: ${NODE_INGEST:false}
+      ml: ${NODE_ML:false}
 
-    network.host: 0.0.0.0
+    max_local_storage_nodes: ${MAX_LOCAL_STORAGE_NODES:1}
+
+    search.remote.connect: ${SEARCH_REMOTE_CONNECT:false}
+
+    network.host: ${NETWORK_HOST:0.0.0.0}
+
+    path:
+      data: ${PATH_DATA}
+      logs: ${PATH_LOG}
 
     # see https://github.com/kubernetes/kubernetes/issues/3595
     bootstrap.memory_lock: ${BOOTSTRAP_MEMORY_LOCK:false}
+
+    http:
+      enabled: ${HTTP_ENABLE}
+      compression: true
+      cors:
+        enabled: ${HTTP_CORS_ENABLE}
+        allow-origin: ${HTTP_CORS_ALLOW_ORIGIN}
 
     discovery:
       zen:
