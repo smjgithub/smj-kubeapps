@@ -1,7 +1,7 @@
 # Default values for elasticsearch.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-# Version tag for freshness check - SMJ-20181122-1635
+# Version tag for freshness check - SMJ-20181122-1651
 appVersion: "6.4.3"
 
 ## Define serviceAccount names for components. Defaults to component's fully qualified name.
@@ -33,8 +33,10 @@ podSecurityPolicy:
     # apparmor.security.beta.kubernetes.io/defaultProfileName: 'runtime/default'
 
 image:
-  repository: "docker.elastic.co/elasticsearch/elasticsearch-oss"
-  tag: "6.4.3"
+  repository: "smjdockerhub/smj-kubeapps-es"
+  tag: "latest"
+#  repository: "docker.elastic.co/elasticsearch/elasticsearch-oss"
+#  tag: "6.4.3"
   pullPolicy: "IfNotPresent"
   # If specified, use these secrets to access the image
   # pullSecrets:
