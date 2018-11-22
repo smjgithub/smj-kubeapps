@@ -1,7 +1,7 @@
 # Default values for elasticsearch.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-# Version: SMJ-20181122-1452
+# Version: SMJ-20181122-1507
 appVersion: "6.5.0"
 
 ## Define serviceAccount names for components. Defaults to component's fully qualified name.
@@ -153,7 +153,8 @@ data:
 
 ingest:
   name: ingest
-  replicas: 0
+  exposeHttp: false
+  replicas: 1
   serviceType: ClusterIP
   loadBalancerIP: {}
   loadBalancerSourceRanges: {}
@@ -183,7 +184,8 @@ ingest:
 
 query:
   name: query
-  replicas: 0
+  exposeHttp: false
+  replicas: 1
   serviceType: ClusterIP
   loadBalancerIP: {}
   loadBalancerSourceRanges: {}
