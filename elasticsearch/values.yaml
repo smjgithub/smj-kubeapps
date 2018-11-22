@@ -1,7 +1,7 @@
 # Default values for elasticsearch.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-# Version tag for freshness check - SMJ-20181122-1651
+# Version tag for freshness check - SMJ-20181122-1731
 appVersion: "6.4.3"
 
 ## Define serviceAccount names for components. Defaults to component's fully qualified name.
@@ -130,7 +130,7 @@ master:
 data:
   name: data
   exposeHttp: false
-  replicas: 1
+  replicas: 2
   heapSize: "512m"
   persistence:
     enabled: true
