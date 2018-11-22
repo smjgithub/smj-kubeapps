@@ -1,7 +1,7 @@
 # Default values for elasticsearch.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-# Version tag for freshness check - SMJ-20181122-1542
+# Version tag for freshness check - SMJ-20181122-1551
 appVersion: "6.4.3"
 
 ## Define serviceAccount names for components. Defaults to component's fully qualified name.
@@ -101,7 +101,7 @@ master:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "4Gi"
+    size: "0.5Gi"
     # storageClass: "ssd"
   antiAffinity: "soft"
   nodeAffinity: {}
@@ -134,7 +134,7 @@ data:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "30Gi"
+    size: "1Gi"
     # storageClass: "ssd"
   terminationGracePeriodSeconds: 3600
   antiAffinity: "soft"
@@ -160,7 +160,7 @@ data:
     type: OnDelete
   hooks:  # post-start and pre-stop hooks
     drain:  # drain the node before stopping it and re-integrate it into the cluster after start
-      enabled: true
+      enabled: false
 
 ## Additional init containers
 extraInitContainers: |
