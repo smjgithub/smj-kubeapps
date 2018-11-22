@@ -66,15 +66,15 @@ cluster:
     # node knows the minimum number of master-eligible nodes that must be visible in order to form a cluster.
     MINIMUM_MASTER_NODES: "2"
     ES_JAVA_OPTS: "-Xms512m -Xmx512m"
-    CLUSTER_NAME: elasticsearch-default
+    CLUSTER_NAME: "elasticsearch-default"
     NODE_MASTER: false
     NODE_DATA: false
     NODE_INGEST: false
     NODE_ML: false
     HTTP_ENABLE: true
-    NETWORK_HOST: _site_
+    NETWORK_HOST: "_site_"
     HTTP_CORS_ENABLE: true
-    HTTP_CORS_ALLOW_ORIGIN: *
+    HTTP_CORS_ALLOW_ORIGIN: "*"
     NUMBER_OF_MASTERS: 3
     MAX_LOCAL_STORAGE_NODES: 1
     SHARD_ALLOCATION_AWARENESS: ""
@@ -82,7 +82,7 @@ cluster:
     MEMORY_LOCK: true
     XPACK_MONITORING_ENABLED: true
     SEARCH_REMOTE_CONNECT: false
-    PATH_DATA: "[: /data/data: ]"
+    PATH_DATA: "[ /data/data ]"
     PATH_LOG: "/data/log"
 
 master:
@@ -214,6 +214,3 @@ query:
     enabled: false
     minAvailable: 1
     # maxUnavailable: 1
-
-## Additional init containers
-extraInitContainers: |
