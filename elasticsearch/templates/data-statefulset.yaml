@@ -96,6 +96,8 @@ spec:
           value: {{ template "elasticsearch.fullname" . }}-discovery
         - name: NODE_MASTER
           value: "false"
+        - name: NODE_INGEST
+          value: "false"
         - name: PROCESSORS
           valueFrom:
             resourceFieldRef:

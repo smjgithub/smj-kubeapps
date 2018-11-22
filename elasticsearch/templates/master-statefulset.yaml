@@ -94,10 +94,8 @@ spec:
         env:
         - name: NODE_DATA
           value: "false"
-{{- if hasPrefix "5." .Values.appVersion }}
         - name: NODE_INGEST
           value: "false"
-{{- end }}
         - name: DISCOVERY_SERVICE
           value: {{ template "elasticsearch.fullname" . }}-discovery
         - name: PROCESSORS
