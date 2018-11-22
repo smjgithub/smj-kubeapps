@@ -9,19 +9,20 @@ image:
   pullPolicy: IfNotPresent
 
 service:
-  type: ClusterIP
-  port: 80
+  type: LoadBalancer
+  port: 9001
+  targetPort: 9000
   annotations: {}
   labels: {}
 
 ingress:
-  enabled: true
+  enabled: false
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
-  path: /cerebro
+  path: /
   hosts:
-    - k8s-cluster
+    - chart-example.local
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
@@ -38,9 +39,11 @@ affinity: {}
 config:
   basePath: '/'
   restHistorySize: 50
-  hosts: []
-  #  - host:
-  #    name:
+  hosts:
+    - host: "http://elasticsearch-ingest:9200"
+      name: "SKY Elastic Cluster 01 (Ingest Nodes)"
+    - host: "http://elasticsearch-query:9200"
+      name: "SKY Elastic Cluster 01 (Query Nodes)"
 
   # Secret used to sign session cookies. If empty it will be replaced with a
   # random 64 length string

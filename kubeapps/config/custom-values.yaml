@@ -1,0 +1,4 @@
+apprepository:
+  initialRepos:
+  - name: smj-kubeapps
+    url: https://smjgithub.github.io/smj-kubeapps
