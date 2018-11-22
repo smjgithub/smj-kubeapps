@@ -1,5 +1,0 @@
-extraInitContainers: |
-#  - name: "plugin-install-repository-hdfs"
-#    image: "docker.elastic.co/elasticsearch/elasticsearch:6.5.0"
-#    command: ["/bin/bash"]
-#    args: ["-c", "/usr/share/elasticsearch/bin/elasticsearch-plugin install --batch repository-hdfs"]
