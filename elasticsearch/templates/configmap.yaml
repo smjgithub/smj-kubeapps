@@ -17,8 +17,7 @@ data:
       data: ${NODE_DATA:false}
       ingest: ${NODE_INGEST:false}
       ml: ${NODE_ML:false}
-
-    max_local_storage_nodes: ${MAX_LOCAL_STORAGE_NODES:1}
+      max_local_storage_nodes: ${MAX_LOCAL_STORAGE_NODES:1}
 
     search.remote.connect: ${SEARCH_REMOTE_CONNECT:false}
 
