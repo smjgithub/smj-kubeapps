@@ -1,3 +1,4 @@
+# Version tag for freshness check - SMJ-20181122-1635
 image:
   repository: "docker.elastic.co/kibana/kibana-oss"
   tag: "6.4.3"
@@ -21,7 +22,7 @@ files:
     ## Default Kibana configuration from kibana-docker.
     server.name: kibana
     server.host: "0"
-    elasticsearch.url: http://elasticsearch-query:9200
+    elasticsearch.url: http://elasticsearch-client:9200
 
     ## Custom config properties below
     ## Ref: https://www.elastic.co/guide/en/kibana/current/settings.html
