@@ -59,51 +59,51 @@ data:
 {{- with .Values.cluster.config }}
 {{ toYaml . | indent 4 }}
 {{- end }}
-  log4j2.properties: |-
-    status = error
-    appender.console.type = Console
-    appender.console.name = console
-    appender.console.layout.type = PatternLayout
-    appender.console.layout.pattern = [%d{ISO8601}][%-5p][%-25c{1.}] %marker%m%n
-    rootLogger.level = info
-    rootLogger.appenderRef.console.ref = console
-    logger.searchguard.name = com.floragunn
-    logger.searchguard.level = info
-{{- if .Values.data.hooks.drain.enabled }}
-  pre-stop-hook.sh: |-
-    #!/bin/bash
-    exec &> >(tee -a "/var/log/elasticsearch-hooks.log")
-    NODE_NAME=${HOSTNAME}
-    echo "Prepare to migrate data of the node ${NODE_NAME}"
-    echo "Move all data from node ${NODE_NAME}"
-    curl -s -XPUT -H 'Content-Type: application/json' '{{ template "elasticsearch.query.fullname" . }}:9200/_cluster/settings' -d "{
-      \"transient\" :{
-          \"cluster.routing.allocation.exclude._name\" : \"${NODE_NAME}\"
-      }
-    }"
-    echo ""
-
-    while true ; do
-      echo -e "Wait for node ${NODE_NAME} to become empty"
-      SHARDS_ALLOCATION=$(curl -s -XGET 'http://{{ template "elasticsearch.query.fullname" . }}:9200/_cat/shards')
-      if ! echo "${SHARDS_ALLOCATION}" | grep -E "${NODE_NAME}"; then
-        break
-      fi
-      sleep 1
-    done
-    echo "Node ${NODE_NAME} is ready to shutdown"
-  post-start-hook.sh: |-
-    #!/bin/bash
-    exec &> >(tee -a "/var/log/elasticsearch-hooks.log")
-    NODE_NAME=${HOSTNAME}
-    CLUSTER_SETTINGS=$(curl -s -XGET "http://{{ template "elasticsearch.query.fullname" . }}:9200/_cluster/settings")
-    if echo "${CLUSTER_SETTINGS}" | grep -E "${NODE_NAME}"; then
-      echo "Activate node ${NODE_NAME}"
-      curl -s -XPUT -H 'Content-Type: application/json' "http://{{ template "elasticsearch.query.fullname" . }}:9200/_cluster/settings" -d "{
-        \"transient\" :{
-            \"cluster.routing.allocation.exclude._name\" : null
-        }
-      }"
-    fi
-    echo "Node ${NODE_NAME} is ready to be used"
-{{- end }}
+#  log4j2.properties: |-
+#    status = error
+#    appender.console.type = Console
+#    appender.console.name = console
+#    appender.console.layout.type = PatternLayout
+#    appender.console.layout.pattern = [%d{ISO8601}][%-5p][%-25c{1.}] %marker%m%n
+#    rootLogger.level = info
+#    rootLogger.appenderRef.console.ref = console
+#    logger.searchguard.name = com.floragunn
+#    logger.searchguard.level = info
+#{{- if .Values.data.hooks.drain.enabled }}
+#  pre-stop-hook.sh: |-
+#    #!/bin/bash
+#    exec &> >(tee -a "/var/log/elasticsearch-hooks.log")
+#    NODE_NAME=${HOSTNAME}
+#    echo "Prepare to migrate data of the node ${NODE_NAME}"
+#    echo "Move all data from node ${NODE_NAME}"
+#    curl -s -XPUT -H 'Content-Type: application/json' '{{ template "elasticsearch.query.fullname" . }}:9200/_cluster/settings' -d "{
+#      \"transient\" :{
+#          \"cluster.routing.allocation.exclude._name\" : \"${NODE_NAME}\"
+#      }
+#    }"
+#    echo ""
+#
+#    while true ; do
+#      echo -e "Wait for node ${NODE_NAME} to become empty"
+#      SHARDS_ALLOCATION=$(curl -s -XGET 'http://{{ template "elasticsearch.query.fullname" . }}:9200/_cat/shards')
+#      if ! echo "${SHARDS_ALLOCATION}" | grep -E "${NODE_NAME}"; then
+#        break
+#      fi
+#      sleep 1
+#    done
+#    echo "Node ${NODE_NAME} is ready to shutdown"
+#  post-start-hook.sh: |-
+#    #!/bin/bash
+#    exec &> >(tee -a "/var/log/elasticsearch-hooks.log")
+#    NODE_NAME=${HOSTNAME}
+#    CLUSTER_SETTINGS=$(curl -s -XGET "http://{{ template "elasticsearch.query.fullname" . }}:9200/_cluster/settings")
+#    if echo "${CLUSTER_SETTINGS}" | grep -E "${NODE_NAME}"; then
+#      echo "Activate node ${NODE_NAME}"
+#      curl -s -XPUT -H 'Content-Type: application/json' "http://{{ template "elasticsearch.query.fullname" . }}:9200/_cluster/settings" -d "{
+#        \"transient\" :{
+#            \"cluster.routing.allocation.exclude._name\" : null
+#        }
+#      }"
+#    fi
+#    echo "Node ${NODE_NAME} is ready to be used"
+#{{- end }}
