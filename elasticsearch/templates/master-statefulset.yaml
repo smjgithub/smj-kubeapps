@@ -79,8 +79,7 @@ spec:
         command:
         - /bin/bash
         - -c
-        - chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data &&
-          chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/logs
+        - chown -R elasticsearch:elasticsearch /usr/share/elasticsearch
         securityContext:
           runAsUser: 0
         volumeMounts:
