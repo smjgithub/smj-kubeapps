@@ -24,19 +24,11 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 
 {{/*
-Create a default fully qualified ingest name.
+Create a default fully qualified client name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 */}}
-{{- define "elasticsearch.ingest.fullname" -}}
-{{ template "elasticsearch.fullname" . }}-{{ .Values.ingest.name }}
-{{- end -}}
-
-{{/*
-Create a default fully qualified query name.
-We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
-*/}}
-{{- define "elasticsearch.query.fullname" -}}
-{{ template "elasticsearch.fullname" . }}-{{ .Values.query.name }}
+{{- define "elasticsearch.client.fullname" -}}
+{{ template "elasticsearch.fullname" . }}-{{ .Values.client.name }}
 {{- end -}}
 
 {{/*
@@ -56,24 +48,13 @@ We truncate at 63 chars because some Kubernetes name fields are limited to this 
 {{- end -}}
 
 {{/*
-Create the name of the service account to use for the ingest component
+Create the name of the service account to use for the client component
 */}}
-{{- define "elasticsearch.serviceAccountName.ingest" -}}
-{{- if .Values.serviceAccounts.ingest.create -}}
-    {{ default (include "elasticsearch.ingest.fullname" .) .Values.serviceAccounts.ingest.name }}
+{{- define "elasticsearch.serviceAccountName.client" -}}
+{{- if .Values.serviceAccounts.client.create -}}
+    {{ default (include "elasticsearch.client.fullname" .) .Values.serviceAccounts.client.name }}
 {{- else -}}
-    {{ default "default" .Values.serviceAccounts.ingest.name }}
-{{- end -}}
-{{- end -}}
-
-{{/*
-Create the name of the service account to use for the query component
-*/}}
-{{- define "elasticsearch.serviceAccountName.query" -}}
-{{- if .Values.serviceAccounts.query.create -}}
-    {{ default (include "elasticsearch.query.fullname" .) .Values.serviceAccounts.query.name }}
-{{- else -}}
-    {{ default "default" .Values.serviceAccounts.query.name }}
+    {{ default "default" .Values.serviceAccounts.client.name }}
 {{- end -}}
 {{- end -}}
 

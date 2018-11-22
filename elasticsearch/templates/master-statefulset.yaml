@@ -79,21 +79,25 @@ spec:
         command:
         - /bin/bash
         - -c
-        - chown -R elasticsearch:elasticsearch /usr/share/elasticsearch
+        - chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/data &&
+          chown -R elasticsearch:elasticsearch /usr/share/elasticsearch/logs
         securityContext:
           runAsUser: 0
         volumeMounts:
         - mountPath: /usr/share/elasticsearch/data
           name: data
+{{- if .Values.extraInitContainers }}
+{{ tpl .Values.extraInitContainers . | indent 6 }}
+{{- end }}
       containers:
       - name: elasticsearch
         env:
         - name: NODE_DATA
           value: "false"
+{{- if hasPrefix "5." .Values.appVersion }}
         - name: NODE_INGEST
           value: "false"
-        - name: NODE_MASTER
-          value: "true"
+{{- end }}
         - name: DISCOVERY_SERVICE
           value: {{ template "elasticsearch.fullname" . }}-discovery
         - name: PROCESSORS

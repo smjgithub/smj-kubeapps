@@ -4,33 +4,33 @@ metadata:
   labels:
     app: {{ template "elasticsearch.name" . }}
     chart: {{ .Chart.Name }}-{{ .Chart.Version }}
-    component: "{{ .Values.ingest.name }}"
+    component: "{{ .Values.client.name }}"
     heritage: {{ .Release.Service }}
     release: {{ .Release.Name }}
-  name: {{ template "elasticsearch.ingest.fullname" . }}
+  name: {{ template "elasticsearch.client.fullname" . }}
 spec:
-  replicas: {{ .Values.ingest.replicas }}
+  replicas: {{ .Values.client.replicas }}
   template:
     metadata:
       labels:
         app: {{ template "elasticsearch.name" . }}
-        component: "{{ .Values.ingest.name }}"
+        component: "{{ .Values.client.name }}"
         release: {{ .Release.Name }}
-        {{- if .Values.ingest.podAnnotations }}
+        {{- if .Values.client.podAnnotations }}
       annotations:
-{{ toYaml .Values.ingest.podAnnotations | indent 8 }}
+{{ toYaml .Values.client.podAnnotations | indent 8 }}
         {{- end }}
     spec:
-      serviceAccountName: {{ template "elasticsearch.serviceAccountName.ingest" . }}
-{{- if .Values.ingest.priorityClassName }}
-      priorityClassName: "{{ .Values.ingest.priorityClassName }}"
+      serviceAccountName: {{ template "elasticsearch.serviceAccountName.client" . }}
+{{- if .Values.client.priorityClassName }}
+      priorityClassName: "{{ .Values.client.priorityClassName }}"
 {{- end }}
       securityContext:
         fsGroup: 1000
-      {{- if or .Values.ingest.antiAffinity .Values.ingest.nodeAffinity }}
+      {{- if or .Values.client.antiAffinity .Values.client.nodeAffinity }}
       affinity:
       {{- end }}
-      {{- if eq .Values.ingest.antiAffinity "hard" }}
+      {{- if eq .Values.client.antiAffinity "hard" }}
         podAntiAffinity:
           requiredDuringSchedulingIgnoredDuringExecution:
             - topologyKey: "kubernetes.io/hostname"
@@ -38,8 +38,8 @@ spec:
                 matchLabels:
                   app: "{{ template "elasticsearch.name" . }}"
                   release: "{{ .Release.Name }}"
-                  component: "{{ .Values.ingest.name }}"
-      {{- else if eq .Values.ingest.antiAffinity "soft" }}
+                  component: "{{ .Values.client.name }}"
+      {{- else if eq .Values.client.antiAffinity "soft" }}
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
           - weight: 1
@@ -49,19 +49,19 @@ spec:
                 matchLabels:
                   app: "{{ template "elasticsearch.name" . }}"
                   release: "{{ .Release.Name }}"
-                  component: "{{ .Values.ingest.name }}"
+                  component: "{{ .Values.client.name }}"
       {{- end }}
-      {{- with .Values.ingest.nodeAffinity }}
+      {{- with .Values.client.nodeAffinity }}
         nodeAffinity:
 {{ toYaml . | indent 10 }}
       {{- end }}
-{{- if .Values.ingest.nodeSelector }}
+{{- if .Values.client.nodeSelector }}
       nodeSelector:
-{{ toYaml .Values.ingest.nodeSelector | indent 8 }}
+{{ toYaml .Values.client.nodeSelector | indent 8 }}
 {{- end }}
-{{- if .Values.ingest.tolerations }}
+{{- if .Values.client.tolerations }}
       tolerations:
-{{ toYaml .Values.ingest.tolerations | indent 8 }}
+{{ toYaml .Values.client.tolerations | indent 8 }}
 {{- end }}
       initContainers:
       # see https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html
@@ -80,8 +80,10 @@ spec:
         env:
         - name: NODE_DATA
           value: "false"
+{{- if hasPrefix "5." .Values.appVersion }}
         - name: NODE_INGEST
-          value: "true"
+          value: "false"
+{{- end }}
         - name: NODE_MASTER
           value: "false"
         - name: DISCOVERY_SERVICE
@@ -91,13 +93,13 @@ spec:
             resourceFieldRef:
               resource: limits.cpu
         - name: ES_JAVA_OPTS
-          value: "-Djava.net.preferIPv4Stack=true -Xms{{ .Values.ingest.heapSize }} -Xmx{{ .Values.ingest.heapSize }} {{ .Values.cluster.additionalJavaOpts }}"
+          value: "-Djava.net.preferIPv4Stack=true -Xms{{ .Values.client.heapSize }} -Xmx{{ .Values.client.heapSize }} {{ .Values.cluster.additionalJavaOpts }}"
         {{- range $key, $value :=  .Values.cluster.env }}
         - name: {{ $key }}
           value: {{ $value | quote }}
         {{- end }}
         resources:
-{{ toYaml .Values.ingest.resources | indent 12 }}
+{{ toYaml .Values.client.resources | indent 12 }}
         readinessProbe:
           httpGet:
             path: /_cluster/health

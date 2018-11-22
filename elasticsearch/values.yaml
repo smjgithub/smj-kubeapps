@@ -1,16 +1,13 @@
 # Default values for elasticsearch.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-# Version: SMJ-20181122-1516
-appVersion: "6.5.0"
+# Version tag for freshness check - SMJ-20181122-1542
+appVersion: "6.4.3"
 
 ## Define serviceAccount names for components. Defaults to component's fully qualified name.
 ##
 serviceAccounts:
-  ingest:
-    create: true
-    name:
-  query:
+  client:
     create: true
     name:
   master:
@@ -36,10 +33,8 @@ podSecurityPolicy:
     # apparmor.security.beta.kubernetes.io/defaultProfileName: 'runtime/default'
 
 image:
-#  repository: "smjdockerhub/sky-elasticsearch"
-#  tag: "latest"
-  repository: "docker.elastic.co/elasticsearch/elasticsearch"
-  tag: "6.5.0"
+  repository: "docker.elastic.co/elasticsearch/elasticsearch-oss"
+  tag: "6.4.3"
   pullPolicy: "IfNotPresent"
   # If specified, use these secrets to access the image
   # pullSecrets:
@@ -51,7 +46,7 @@ initImage:
   pullPolicy: "Always"
 
 cluster:
-  name: "sky_elastic_01"
+  name: "elasticsearch"
   # If you want X-Pack installed, switch to an image that includes it, enable this option and toggle the features you want
   # enabled in the environment variables outlined in the README
   xpackEnable: false
@@ -66,19 +61,36 @@ cluster:
     # To prevent data loss, it is vital to configure the discovery.zen.minimum_master_nodes setting so that each master-eligible
     # node knows the minimum number of master-eligible nodes that must be visible in order to form a cluster.
     MINIMUM_MASTER_NODES: "2"
-    ES_JAVA_OPTS: "-Xms512m -Xmx512m"
-    CLUSTER_NAME: "elasticsearch-default"
-    NODE_MASTER: false
-    NODE_DATA: false
-    NODE_INGEST: false
-    NODE_ML: false
-    NUMBER_OF_MASTERS: 3
-    MAX_LOCAL_STORAGE_NODES: 1
-    SHARD_ALLOCATION_AWARENESS: ""
-    SHARD_ALLOCATION_AWARENESS_ATTR: ""
-    MEMORY_LOCK: true
-    XPACK_MONITORING_ENABLED: true
-    SEARCH_REMOTE_CONNECT: false
+
+client:
+  name: client
+  replicas: 2
+  serviceType: ClusterIP
+  loadBalancerIP: {}
+  loadBalancerSourceRanges: {}
+## (dict) If specified, apply these annotations to the client service
+#  serviceAnnotations:
+#    example: client-svc-foo
+  heapSize: "512m"
+  antiAffinity: "soft"
+  nodeAffinity: {}
+  nodeSelector: {}
+  tolerations: []
+  resources:
+    limits:
+      cpu: "1"
+      # memory: "1024Mi"
+    requests:
+      cpu: "25m"
+      memory: "512Mi"
+  priorityClassName: ""
+  ## (dict) If specified, apply these annotations to each client Pod
+  # podAnnotations:
+  #   example: client-foo
+  podDisruptionBudget:
+    enabled: false
+    minAvailable: 1
+    # maxUnavailable: 1
 
 master:
   name: master
@@ -89,8 +101,8 @@ master:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "256Mi"
-    storageClass: "hostpath"
+    size: "4Gi"
+    # storageClass: "ssd"
   antiAffinity: "soft"
   nodeAffinity: {}
   nodeSelector: {}
@@ -122,8 +134,8 @@ data:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "1Gi"
-    storageClass: "hostpath"
+    size: "30Gi"
+    # storageClass: "ssd"
   terminationGracePeriodSeconds: 3600
   antiAffinity: "soft"
   nodeAffinity: {}
@@ -148,66 +160,7 @@ data:
     type: OnDelete
   hooks:  # post-start and pre-stop hooks
     drain:  # drain the node before stopping it and re-integrate it into the cluster after start
-      enabled: false
+      enabled: true
 
-ingest:
-  name: ingest
-  exposeHttp: false
-  replicas: 1
-  serviceType: ClusterIP
-  loadBalancerIP: {}
-  loadBalancerSourceRanges: {}
-  ## (dict) If specified, apply these annotations to the ingest service
-  #  serviceAnnotations:
-  #    example: ingest-svc-foo
-  heapSize: "512m"
-  antiAffinity: "soft"
-  nodeAffinity: {}
-  nodeSelector: {}
-  tolerations: []
-  resources:
-    limits:
-      cpu: "1"
-      # memory: "1024Mi"
-    requests:
-      cpu: "25m"
-      memory: "512Mi"
-  priorityClassName: ""
-  ## (dict) If specified, apply these annotations to each ingest Pod
-  # podAnnotations:
-  #   example: ingest-foo
-  podDisruptionBudget:
-    enabled: false
-    minAvailable: 1
-    # maxUnavailable: 1
-
-query:
-  name: query
-  exposeHttp: false
-  replicas: 1
-  serviceType: ClusterIP
-  loadBalancerIP: {}
-  loadBalancerSourceRanges: {}
-  ## (dict) If specified, apply these annotations to the query service
-  #  serviceAnnotations:
-  #    example: query-svc-foo
-  heapSize: "512m"
-  antiAffinity: "soft"
-  nodeAffinity: {}
-  nodeSelector: {}
-  tolerations: []
-  resources:
-    limits:
-      cpu: "1"
-      # memory: "1024Mi"
-    requests:
-      cpu: "25m"
-      memory: "512Mi"
-  priorityClassName: ""
-  ## (dict) If specified, apply these annotations to each query Pod
-  # podAnnotations:
-  #   example: query-foo
-  podDisruptionBudget:
-    enabled: false
-    minAvailable: 1
-    # maxUnavailable: 1
+## Additional init containers
+extraInitContainers: |
