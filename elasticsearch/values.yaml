@@ -1,7 +1,7 @@
 # Default values for elasticsearch.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-# Version: SMJ-20181122-1225
+# Version: SMJ-20181122-1420
 appVersion: "6.5.0"
 
 ## Define serviceAccount names for components. Defaults to component's fully qualified name.
@@ -72,10 +72,7 @@ cluster:
     NODE_DATA: false
     NODE_INGEST: false
     NODE_ML: false
-    HTTP_ENABLE: true
     NETWORK_HOST: "_site_"
-    HTTP_CORS_ENABLE: true
-    HTTP_CORS_ALLOW_ORIGIN: "*"
     NUMBER_OF_MASTERS: 3
     MAX_LOCAL_STORAGE_NODES: 1
     SHARD_ALLOCATION_AWARENESS: ""
@@ -83,8 +80,6 @@ cluster:
     MEMORY_LOCK: true
     XPACK_MONITORING_ENABLED: true
     SEARCH_REMOTE_CONNECT: false
-    PATH_DATA: "[ /data/data ]"
-    PATH_LOG: "/data/log"
 
 master:
   name: master

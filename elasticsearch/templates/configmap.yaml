@@ -24,19 +24,8 @@ data:
 
     network.host: ${NETWORK_HOST:0.0.0.0}
 
-    path:
-      data: ${PATH_DATA}
-      logs: ${PATH_LOG}
-
     # see https://github.com/kubernetes/kubernetes/issues/3595
     bootstrap.memory_lock: ${BOOTSTRAP_MEMORY_LOCK:false}
-
-    http:
-      enabled: ${HTTP_ENABLE}
-      compression: true
-      cors:
-        enabled: ${HTTP_CORS_ENABLE}
-        allow-origin: ${HTTP_CORS_ALLOW_ORIGIN}
 
     discovery:
       zen:
