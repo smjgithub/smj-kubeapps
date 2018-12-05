@@ -140,6 +140,18 @@ configMaps:
       </parse>
     </source>
 
+    <source>
+      @type tail
+      @id in_tail_kube_apiserver
+      multiline_flush_interval 5s
+      path /var/log/kube-apiserver.log
+      pos_file /var/log/fluentd-kube-apiserver.log.pos
+      tag kube-apiserver
+      <parse>
+        @type none
+      </parse>
+    </source>
+
 #    <source>
 #      @type tail
 #      @id in_tail_kubelet
@@ -164,17 +176,6 @@ configMaps:
 #      </parse>
 #    </source>
 #
-    <source>
-      @type tail
-      @id in_tail_kube_apiserver
-      multiline_flush_interval 5s
-      path /var/log/kube-apiserver.log
-      pos_file /var/log/fluentd-kube-apiserver.log.pos
-      tag kube-apiserver
-      <parse>
-        @type parser_none
-      </parse>
-    </source>
 #
 #    <source>
 #      @type tail
