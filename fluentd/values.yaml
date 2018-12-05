@@ -1,7 +1,7 @@
 # Default values for fluentd.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-# SMJ-20181205-1143
+# SMJ-20181205-1154
 image:
   repository: gcr.io/google-containers/fluentd-elasticsearch
   tag: v2.3.1
@@ -258,6 +258,7 @@ configMaps:
         timekey 1m
         timekey_wait 0s
         flush_thread_count "#{ENV['FLUENT_ELASTICSEARCH_BUFFER_FLUSH_THREAD_COUNT'] || '8'}"
+        flush_mode interval
         flush_interval "#{ENV['FLUENT_ELASTICSEARCH_BUFFER_FLUSH_INTERVAL'] || '5s'}"
         chunk_limit_size "#{ENV['ELASTICSEARCH_BUFFER_CHUNK_LIMIT_SIZE'] || '2M'}"
         queue_limit_length "#{ENV['ELASTICSEARCH_BUFFER_QUEUE_LIMIT_LENGTH'] || '32'}"
