@@ -1,4 +1,4 @@
-# SMJ-20181205-1557
+# SMJ-20181205-1613
 # Default values for elasticsearch.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -39,7 +39,7 @@ image:
   repository: "smjdockerhub/smj-kubeapps-es"
   tag: "latest"
 #  repository: "docker.elastic.co/elasticsearch/elasticsearch-oss"
-#  tag: "6.4.3"
+#  tag: "6.5.0"
   pullPolicy: "IfNotPresent"
   # If specified, use these secrets to access the image
   # pullSecrets:
@@ -54,7 +54,7 @@ cluster:
   name: "sky_elastic_01"
   # If you want X-Pack installed, switch to an image that includes it, enable this option and toggle the features you want
   # enabled in the environment variables outlined in the README
-  xpackEnable: false
+  xpackEnable: true
   # Some settings must be placed in a keystore, so they need to be mounted in from a secret.
   # Use this setting to specify the name of the secret
   # keystoreSecret: eskeystore
