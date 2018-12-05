@@ -48,9 +48,9 @@ configMaps:
     # Prevent fluentd from handling records containing its own logs. Otherwise
     # it can lead to an infinite loop, when error in sending one message generates
     # another message which also fails to be sent and so on.
-#    <match fluentd.**>
-#      @type null
-#    </match>
+    <match fluentd.**>
+      @type null
+    </match>
 
     # Used for health checking
     <source>
@@ -62,12 +62,12 @@ configMaps:
     # Emits internal metrics to every minute, and also exposes them on port
     # 24220. Useful for determining if an output plugin is retryring/erroring,
     # or determining the buffer queue length.
-#    <source>
-#      @type monitor_agent
-#      bind 0.0.0.0
-#      port 24220
-#      tag fluentd.monitor.metrics
-#    </source>
+    <source>
+      @type monitor_agent
+      bind 0.0.0.0
+      port 24220
+      tag fluentd.monitor.metrics
+    </source>
   system.conf: |-
     <system>
       root_dir /tmp/fluentd-buffers/
