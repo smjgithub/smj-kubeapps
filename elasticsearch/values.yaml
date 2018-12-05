@@ -7,7 +7,7 @@ appVersion: "6.4.3"
 ## Define serviceAccount names for components. Defaults to component's fully qualified name.
 ##
 serviceAccounts:
-  client:
+  ingest:
     create: true
     name:
   master:
@@ -64,15 +64,15 @@ cluster:
     # node knows the minimum number of master-eligible nodes that must be visible in order to form a cluster.
     MINIMUM_MASTER_NODES: "2"
 
-client:
-  name: client
+ingest:
+  name: ingest
   replicas: 1
   serviceType: ClusterIP
   loadBalancerIP: {}
   loadBalancerSourceRanges: {}
-## (dict) If specified, apply these annotations to the client service
+## (dict) If specified, apply these annotations to the ingest service
 #  serviceAnnotations:
-#    example: client-svc-foo
+#    example: ingest-svc-foo
   heapSize: "512m"
   antiAffinity: "soft"
   nodeAffinity: {}
@@ -86,9 +86,9 @@ client:
       cpu: "25m"
       memory: "512Mi"
   priorityClassName: ""
-  ## (dict) If specified, apply these annotations to each client Pod
+  ## (dict) If specified, apply these annotations to each ingest Pod
   # podAnnotations:
-  #   example: client-foo
+  #   example: ingest-foo
   podDisruptionBudget:
     enabled: false
     minAvailable: 1
