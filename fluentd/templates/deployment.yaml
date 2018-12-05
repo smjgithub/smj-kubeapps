@@ -34,13 +34,13 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
-          - name: OUTPUT_HOST
+          - name: ELASTICSEARCH_HOST
             value: {{ .Values.output.host | quote }}
-          - name: OUTPUT_PORT
+          - name: ELASTICSEARCH_PORT
             value: {{ .Values.output.port | quote }}
-          - name: OUTPUT_BUFFER_CHUNK_LIMIT
+          - name: ELASTICSEARCH_BUFFER_CHUNK_LIMIT_SIZE
             value: {{ .Values.output.buffer_chunk_limit | quote }}
-          - name: OUTPUT_BUFFER_QUEUE_LIMIT
+          - name: ELASTICSEARCH_BUFFER_QUEUE_LIMIT_LENGTH
             value: {{ .Values.output.buffer_queue_limit | quote }}
           {{- range $key, $value := .Values.env }}
           - name: {{ $key | quote }}
