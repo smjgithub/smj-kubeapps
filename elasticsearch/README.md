@@ -74,20 +74,34 @@ The following table lists the configurable parameters of the elasticsearch chart
 | `cluster.keystoreSecret`             | Name of secret holding secure config options in an es keystore      | `nil`                                               |
 | `cluster.env`                        | Cluster environment variables                                       | `{MINIMUM_MASTER_NODES: "2"}`                       |
 | `cluster.additionalJavaOpts`         | Cluster parameters to be added to `ES_JAVA_OPTS` environment variable | `""`                                              |
-| `ingest.name`                        | ingest component name                                               | `ingest`                                            |
-| `ingest.replicas`                    | ingest node replicas (deployment)                                   | `2`                                                 |
-| `ingest.resources`                   | ingest node resources requests & limits                             | `{} - cpu limit must be an integer`                 |
-| `ingest.priorityClassName`           | ingest priorityClass                                                | `nil`                                               |
-| `ingest.heapSize`                    | ingest node heap size                                               | `512m`                                              |
-| `ingest.podAnnotations`              | ingest Deployment annotations                                       | `{}`                                                |
-| `ingest.nodeSelector`                | Node labels for ingest pod assignment                               | `{}`                                                |
-| `ingest.tolerations`                 | ingest tolerations                                                  | `[]`                                                |
-| `ingest.serviceAnnotations`          | ingest Service annotations                                          | `{}`                                                |
-| `ingest.serviceType`                 | ingest service type                                                 | `ClusterIP`                                         |
-| `ingest.loadBalancerIP`              | ingest loadBalancerIP                                               | `{}`                                                |
-| `ingest.loadBalancerSourceRanges`    | ingest loadBalancerSourceRanges                                     | `{}`                                                |
-| `ingest.antiAffinity`                | ingest anti-affinity policy                                         | `soft`                                              |
-| `ingest.nodeAffinity`                | ingest node affinity policy                                         | `{}`                                                |
+| `ingest.name`                        | Ingest component name                                               | `ingest`                                            |
+| `ingest.replicas`                    | Ingest node replicas (deployment)                                   | `2`                                                 |
+| `ingest.resources`                   | Ingest node resources requests & limits                             | `{} - cpu limit must be an integer`                 |
+| `ingest.priorityClassName`           | Ingest priorityClass                                                | `nil`                                               |
+| `ingest.heapSize`                    | Ingest node heap size                                               | `512m`                                              |
+| `ingest.podAnnotations`              | Ingest Deployment annotations                                       | `{}`                                                |
+| `ingest.nodeSelector`                | Node labels for Ingest pod assignment                               | `{}`                                                |
+| `ingest.tolerations`                 | Ingest tolerations                                                  | `[]`                                                |
+| `ingest.serviceAnnotations`          | Ingest Service annotations                                          | `{}`                                                |
+| `ingest.serviceType`                 | Ingest service type                                                 | `ClusterIP`                                         |
+| `ingest.loadBalancerIP`              | Ingest loadBalancerIP                                               | `{}`                                                |
+| `ingest.loadBalancerSourceRanges`    | Ingest loadBalancerSourceRanges                                     | `{}`                                                |
+| `ingest.antiAffinity`                | Ingest anti-affinity policy                                         | `soft`                                              |
+| `ingest.nodeAffinity`                | Ingest node affinity policy                                         | `{}`                                                |
+| `query.name`                         | Query component name                                                | `query`                                             |
+| `query.replicas`                     | Query node replicas (deployment)                                    | `2`                                                 |
+| `query.resources`                    | Query node resources requests & limits                              | `{} - cpu limit must be an integer`                 |
+| `query.priorityClassName`            | Query priorityClass                                                 | `nil`                                               |
+| `query.heapSize`                     | Query node heap size                                                | `512m`                                              |
+| `query.podAnnotations`               | Query Deployment annotations                                        | `{}`                                                |
+| `query.nodeSelector`                 | Node labels for Query pod assignment                                | `{}`                                                |
+| `query.tolerations`                  | Query tolerations                                                   | `[]`                                                |
+| `query.serviceAnnotations`           | Query Service annotations                                           | `{}`                                                |
+| `query.serviceType`                  | Query service type                                                  | `ClusterIP`                                         |
+| `query.loadBalancerIP`               | Query loadBalancerIP                                                | `{}`                                                |
+| `query.loadBalancerSourceRanges`     | Query loadBalancerSourceRanges                                      | `{}`                                                |
+| `query.antiAffinity`                 | Query anti-affinity policy                                          | `soft`                                              |
+| `query.nodeAffinity`                 | Query node affinity policy                                          | `{}`                                                |
 | `master.exposeHttp`                  | Expose http port 9200 on master Pods for monitoring, etc            | `false`                                             |
 | `master.name`                        | Master component name                                               | `master`                                            |
 | `master.replicas`                    | Master node replicas (deployment)                                   | `2`                                                 |

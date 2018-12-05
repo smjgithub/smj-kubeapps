@@ -2,12 +2,15 @@
 # Default values for elasticsearch.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-appVersion: "6.4.3"
+appVersion: "6.5.0"
 
 ## Define serviceAccount names for components. Defaults to component's fully qualified name.
 ##
 serviceAccounts:
   ingest:
+    create: true
+    name:
+  query:
     create: true
     name:
   master:
@@ -70,9 +73,9 @@ ingest:
   serviceType: ClusterIP
   loadBalancerIP: {}
   loadBalancerSourceRanges: {}
-## (dict) If specified, apply these annotations to the ingest service
-#  serviceAnnotations:
-#    example: ingest-svc-foo
+  ## (dict) If specified, apply these annotations to the ingest service
+  #  serviceAnnotations:
+  #    example: ingest-svc-foo
   heapSize: "512m"
   antiAffinity: "soft"
   nodeAffinity: {}
@@ -89,6 +92,36 @@ ingest:
   ## (dict) If specified, apply these annotations to each ingest Pod
   # podAnnotations:
   #   example: ingest-foo
+  podDisruptionBudget:
+    enabled: false
+    minAvailable: 1
+    # maxUnavailable: 1
+
+query:
+  name: query
+  replicas: 1
+  serviceType: ClusterIP
+  loadBalancerIP: {}
+  loadBalancerSourceRanges: {}
+  ## (dict) If specified, apply these annotations to the query service
+  #  serviceAnnotations:
+  #    example: query-svc-foo
+  heapSize: "512m"
+  antiAffinity: "soft"
+  nodeAffinity: {}
+  nodeSelector: {}
+  tolerations: []
+  resources:
+    limits:
+      cpu: "1"
+      # memory: "1024Mi"
+    requests:
+      cpu: "25m"
+      memory: "512Mi"
+  priorityClassName: ""
+  ## (dict) If specified, apply these annotations to each query Pod
+  # podAnnotations:
+  #   example: query-foo
   podDisruptionBudget:
     enabled: false
     minAvailable: 1
