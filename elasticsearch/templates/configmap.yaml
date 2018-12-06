@@ -27,9 +27,9 @@ data:
         minimum_master_nodes: ${MINIMUM_MASTER_NODES:2}
 
 {{- if .Values.cluster.xpackEnable }}
-    xpack.monitoring.collection.enabled: ${XPACK_MONITORING_ENABLED:false}
+    xpack.monitoring.collection.enabled: ${XPACK_MONITORING_ENABLED:true}
     xpack.ml.enabled: ${XPACK_ML_ENABLED:false}
-    xpack.monitoring.enabled: ${XPACK_MONITORING_ENABLED:false}
+    xpack.monitoring.enabled: ${XPACK_MONITORING_ENABLED:true}
     xpack.security.enabled: ${XPACK_SECURITY_ENABLED:false}
     xpack.watcher.enabled: ${XPACK_WATCHER_ENABLED:false}
 {{- end }}
