@@ -11,6 +11,9 @@ data:
   elasticsearch.yml: |-
     cluster.name: {{ .Values.cluster.name }}
 
+    cluster.routing.allocation.awareness.attributes: "rack_id"
+    node.attr.rack_id: ${RACK_ID:rack1}
+
     node.name: ${HOSTNAME}
     node.data: ${NODE_DATA:false}
     node.master: ${NODE_MASTER:false}

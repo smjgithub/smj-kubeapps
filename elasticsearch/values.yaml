@@ -36,7 +36,7 @@ podSecurityPolicy:
     # apparmor.security.beta.kubernetes.io/defaultProfileName: 'runtime/default'
 
 image:
-  repository: "smjdockerhub/smj-kubeapps-es"
+  repository: "smjdockerhub/sky-elasticsearch"
   tag: "latest"
 #  repository: "docker.elastic.co/elasticsearch/elasticsearch-oss"
 #  tag: "6.5.0"
