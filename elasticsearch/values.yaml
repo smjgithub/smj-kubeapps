@@ -1,4 +1,4 @@
-# SMJ-20181209-1224
+# SMJ-20181209-1659
 # Default values for elasticsearch.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -36,10 +36,8 @@ podSecurityPolicy:
     # apparmor.security.beta.kubernetes.io/defaultProfileName: 'runtime/default'
 
 image:
-  repository: "smjdockerhub/sky-elasticsearch"
+  repository: "smjdockerhub/smj-kubeapps-es"
   tag: "latest"
-#  repository: "docker.elastic.co/elasticsearch/elasticsearch-oss"
-#  tag: "6.5.0"
   pullPolicy: "IfNotPresent"
   # If specified, use these secrets to access the image
   # pullSecrets:
