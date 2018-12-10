@@ -1,10 +1,12 @@
+# SMJ-20181210-1728
 # Default values for fluentd.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-# SMJ-20181205-1218
 image:
-  repository: gcr.io/google-containers/fluentd-elasticsearch
-  tag: v2.3.1
+  repository: smjdockerhub/smj-kubeapps-fluentd
+  tag: latest
+#  repository: gcr.io/google-containers/fluentd-elasticsearch
+#  tag: v2.3.1
   pullPolicy: IfNotPresent
   # pullSecrets:
   #   - secret1
