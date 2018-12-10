@@ -69,7 +69,7 @@ spec:
           timeoutSeconds: 1
         volumeMounts:
         - name: config-volume-{{ template "fluentd.fullname" . }}
-          mountPath: /etc/fluent/config.d
+          mountPath: /fluentd/etc
         - name: buffer
           mountPath: "/var/log/fluentd-buffers"
       volumes:
