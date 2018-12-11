@@ -1,0 +1,13 @@
+# On Name Node  or Data Node create the HDFS storage space
+
+hdfs dfs -mkdir /sky-es-hdfs
+hdfs dfs -chmod -R 777 /sky-es-hdfs
+
+PUT _snapshot/sky-es-hdfs
+{
+  "type": "hdfs",
+  "settings": {
+    "uri": "hdfs://hadoop-hadoop-hdfs-nn:9000/",
+    "path": "/sky-es-hdfs"
+  }
+}
