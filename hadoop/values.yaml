@@ -51,7 +51,7 @@ yarn:
     pdbMinAvailable: 1
 
     # The number of YARN NodeManager instances.
-    replicas: 1
+    replicas: 0
 
     # Create statefulsets in parallel (K8S 1.7+)
     parallelCreate: false
