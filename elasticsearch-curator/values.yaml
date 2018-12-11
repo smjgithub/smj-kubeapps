@@ -1,11 +1,11 @@
-# SMJ-20181211-1202
+# SMJ-20181211-1206
 # Default values for elasticsearch-curator.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 cronjob:
   # At 01:00 every day
-  schedule: "0 1 * * *"
+  schedule: "*/5 * * * *"
   annotations: {}
   concurrencyPolicy: ""
   failedJobsHistoryLimit: ""
