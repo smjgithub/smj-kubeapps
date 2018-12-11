@@ -1,4 +1,4 @@
-# SMJ-20181211-1206
+# SMJ-20181211-1214
 # Default values for elasticsearch-curator.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -22,15 +22,15 @@ image:
 config:
   elasticsearch:
     hosts:
-      - CHANGEME.host
+      - elasticsearch-ingest
     port: 9200
 
 configMaps:
   config_yml: |-
     client:
       hosts:
-        - {{ range .Values.config.elasticsearch.hosts }} {{ . }} {{ end }}
-      port: {{ .Values.config.elasticsearch.port }}
+        - elasticsearch-ingest
+      port: 9200
       url_prefix:
       use_ssl: False
       certificate:

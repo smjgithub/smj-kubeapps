@@ -3,7 +3,7 @@ entries:
   cerebro:
   - apiVersion: v1
     appVersion: 0.8.1
-    created: 2018-12-11T12:06:26.416643+03:00
+    created: 2018-12-11T12:15:20.756031+03:00
     description: A Helm chart for Cerebro - a web admin tool that replaces Kopf.
     digest: 9efc59fc08e1e637c37b54e86ce1d084a068f0ff7ab083d63266bad2e7d0165f
     home: https://github.com/lmenezes/cerebro
@@ -19,7 +19,7 @@ entries:
     version: 0.4.0
   elasticsearch:
   - appVersion: 6.5.0
-    created: 2018-12-11T12:06:26.420533+03:00
+    created: 2018-12-11T12:15:20.760394+03:00
     description: Flexible and powerful open source, distributed real-time search and
       analytics engine.
     digest: 33ae6bbac048f69c31eddd7f87788d8a1dd620858a6fbc805cd8d697c9a593b1
@@ -48,9 +48,9 @@ entries:
   elasticsearch-curator:
   - apiVersion: v1
     appVersion: 5.5.4
-    created: 2018-12-11T12:06:26.42146+03:00
+    created: 2018-12-11T12:15:20.76107+03:00
     description: A Helm chart for Elasticsearch Curator
-    digest: 4b6c0cea03961bf190d5030af03cbce9f0c519ebde76add6f104d165d898195a
+    digest: e3fab31c9f2316e87edd28f434a78d33bb102e8a858f069faf62600930a46d3b
     home: https://github.com/elastic/curator
     keywords:
     - curator
@@ -71,7 +71,7 @@ entries:
   elasticsearch-exporter:
   - apiVersion: v1
     appVersion: 1.0.2
-    created: 2018-12-11T12:06:26.422328+03:00
+    created: 2018-12-11T12:15:20.762636+03:00
     description: Elasticsearch stats exporter for Prometheus
     digest: f23df2e2bb95c8bc5e8398594cd7fb9bdb438218cfc0d9c8582d17541ea46202
     home: https://github.com/justwatchcom/elasticsearch_exporter
@@ -92,7 +92,7 @@ entries:
   fluentd:
   - apiVersion: v1
     appVersion: v2.3.1
-    created: 2018-12-11T12:06:26.42467+03:00
+    created: 2018-12-11T12:15:20.764919+03:00
     description: A Fluentd Elasticsearch Helm chart for Kubernetes.
     digest: c7c31d65fc0aaf9ca8027131bd888008612f4effecffe6b771a8d4fd7a5313e7
     home: https://www.fluentd.org/
@@ -110,7 +110,7 @@ entries:
     version: 1.0.0
   grafana:
   - appVersion: 5.3.2
-    created: 2018-12-11T12:06:26.425908+03:00
+    created: 2018-12-11T12:15:20.766172+03:00
     description: The leading tool for querying and visualizing time series and metrics.
     digest: e28fcad92be8ece19d25af068dcc862dfa3708f25dfad2df8a971ee6f269946a
     engine: gotpl
@@ -131,7 +131,7 @@ entries:
   heapster:
   - apiVersion: v1
     appVersion: 1.5.2
-    created: 2018-12-11T12:06:26.426778+03:00
+    created: 2018-12-11T12:15:20.766948+03:00
     description: Heapster enables Container Cluster Monitoring and Performance Analysis.
     digest: 719a7497cd4e571e6087da304d0369c9d5970d018f8a6b4018b13c4fd9f9380c
     engine: gotpl
@@ -152,7 +152,7 @@ entries:
     version: 0.3.2
   influxdb:
   - appVersion: "1.6"
-    created: 2018-12-11T12:06:26.427613+03:00
+    created: 2018-12-11T12:15:20.767738+03:00
     description: Scalable datastore for metrics, events, and real-time analytics.
     digest: ff77ba59a3388872f0ba5e18717d1d872f03d4d41d65f06eac92a7813f6b0f79
     engine: gotpl
@@ -172,7 +172,7 @@ entries:
     version: 0.12.1
   kibana:
   - appVersion: 6.4.3
-    created: 2018-12-11T12:06:26.429122+03:00
+    created: 2018-12-11T12:15:20.769288+03:00
     description: Kibana is an open source data visualization plugin for Elasticsearch
     digest: a2805e6948c206874d4c8f39844c532317fb6a1314bcd7452d25f9b4e356b7a3
     engine: gotpl
@@ -193,7 +193,7 @@ entries:
   kube-state-metrics:
   - apiVersion: v1
     appVersion: 1.4.0
-    created: 2018-12-11T12:06:26.429652+03:00
+    created: 2018-12-11T12:15:20.769815+03:00
     description: Install kube-state-metrics to generate and expose cluster-level metrics
     digest: 6f2eed2e10eca76a9f43e0d2e3b31263781a4cacd5c895531be8feeec5848f8f
     home: https://github.com/kubernetes/kube-state-metrics/
@@ -212,7 +212,7 @@ entries:
     version: 0.11.0
   kubernetes-dashboard:
   - appVersion: 1.10.0
-    created: 2018-12-11T12:06:26.431448+03:00
+    created: 2018-12-11T12:15:20.771539+03:00
     description: General-purpose web UI for Kubernetes clusters
     digest: cebfab51d7d94be239619692a236541a0f67048ca9edfeb8e1fc13a60114a848
     home: https://github.com/kubernetes/dashboard
@@ -232,7 +232,7 @@ entries:
   metricbeat:
   - apiVersion: v1
     appVersion: 6.5.0
-    created: 2018-12-11T12:06:26.433402+03:00
+    created: 2018-12-11T12:15:20.773133+03:00
     description: A Helm chart to collect Kubernetes logs with metricbeat
     digest: 3285bfb1604c02a3d8fe496970933d57e9d37c1034548d1f15b484a0cece94d7
     home: https://www.elastic.co/products/beats/metricbeat
@@ -250,7 +250,7 @@ entries:
     version: 0.3.3
   prometheus:
   - appVersion: 2.5.0
-    created: 2018-12-11T12:06:26.435044+03:00
+    created: 2018-12-11T12:15:20.774722+03:00
     description: Prometheus is a monitoring system and time series database.
     digest: 5dd09267c0f9429036c0383d5d798ae593599b0db37dc23e2dac7e8ef6927fa6
     engine: gotpl
@@ -274,7 +274,7 @@ entries:
     version: 7.4.1
   weave-scope:
   - appVersion: 1.9.1
-    created: 2018-12-11T12:06:26.436381+03:00
+    created: 2018-12-11T12:15:20.776125+03:00
     description: A Helm chart for the Weave Scope cluster visualizer.
     digest: 4bb0b09533c0458ebca5193e71cb9d2102247a7a34fc133fb26039fcb211df7f
     home: https://www.weave.works/oss/scope/
@@ -292,4 +292,4 @@ entries:
     urls:
     - weave-scope/weave-scope-0.10.0.tgz
     version: 0.10.0
-generated: 2018-12-11T12:06:26.414999+03:00
+generated: 2018-12-11T12:15:20.753749+03:00
