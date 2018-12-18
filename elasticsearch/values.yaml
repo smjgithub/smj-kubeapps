@@ -1,4 +1,4 @@
-# SMJ-20181209-1659
+# SMJ-20181218-1302
 # Default values for elasticsearch.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -67,7 +67,7 @@ cluster:
 
 ingest:
   name: ingest
-  replicas: 1
+  replicas: 0
   serviceType: ClusterIP
   loadBalancerIP: {}
   loadBalancerSourceRanges: {}
@@ -161,7 +161,7 @@ master:
 data:
   name: data
   exposeHttp: false
-  replicas: 2
+  replicas: 1
   heapSize: "512m"
   persistence:
     enabled: true
