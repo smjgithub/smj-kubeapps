@@ -1,3 +1,4 @@
+# SMJ-20181206-1025
 image:
   repository: docker.elastic.co/beats/metricbeat
   tag: 6.5.0
@@ -21,7 +22,7 @@ daemonset:
       number_of_files: 5
     output.elasticsearch:
       enabled: true
-      hosts: ["http://elasticsearch-index:9201"]
+      hosts: ["http://elasticsearch-ingest:9200"]
     setup:
       dashboards:
         enabled: true
@@ -85,7 +86,7 @@ deployment:
       number_of_files: 5
     output.elasticsearch:
       enabled: true
-      hosts: ["http://elasticsearch-index:9201"]
+      hosts: ["http://elasticsearch-ingest:9200"]
     setup:
       dashboards:
         enabled: true

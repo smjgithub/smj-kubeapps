@@ -34,13 +34,13 @@ spec:
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
-          - name: OUTPUT_HOST
+          - name: ELASTICSEARCH_HOST
             value: {{ .Values.output.host | quote }}
-          - name: OUTPUT_PORT
+          - name: ELASTICSEARCH_PORT
             value: {{ .Values.output.port | quote }}
-          - name: OUTPUT_BUFFER_CHUNK_LIMIT
+          - name: ELASTICSEARCH_BUFFER_CHUNK_LIMIT_SIZE
             value: {{ .Values.output.buffer_chunk_limit | quote }}
-          - name: OUTPUT_BUFFER_QUEUE_LIMIT
+          - name: ELASTICSEARCH_BUFFER_QUEUE_LIMIT_LENGTH
             value: {{ .Values.output.buffer_queue_limit | quote }}
           {{- range $key, $value := .Values.env }}
           - name: {{ $key | quote }}
@@ -69,20 +69,31 @@ spec:
           timeoutSeconds: 1
         volumeMounts:
         - name: config-volume-{{ template "fluentd.fullname" . }}
-          mountPath: /etc/fluent/config.d
-        - name: buffer
-          mountPath: "/var/log/fluentd-buffers"
+          mountPath: /fluentd/etc
+        - name: varlog
+          mountPath: /var/log
+        - name: varlibdockercontainers
+          mountPath: /var/lib/docker/containers
+          readOnly: true
+#        - name: buffer
+#          mountPath: "/var/log/fluentd-buffers"
       volumes:
         - name: config-volume-{{ template "fluentd.fullname" . }}
           configMap:
             name: {{ template "fluentd.fullname" . }}
-        - name: buffer
-          {{- if .Values.persistence.enabled }}
-          persistentVolumeClaim:
-            claimName: {{ template "fluentd.fullname" . }}
-          {{- else }}
-          emptyDir: {}
-          {{- end }}
+        - name: varlog
+          hostPath:
+            path: /var/log
+        - name: varlibdockercontainers
+          hostPath:
+            path: /var/lib/docker/containers
+#        - name: buffer
+#          {{- if .Values.persistence.enabled }}
+#          persistentVolumeClaim:
+#            claimName: {{ template "fluentd.fullname" . }}
+#          {{- else }}
+#          emptyDir: {}
+#          {{- end }}
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}

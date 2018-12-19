@@ -1,16 +1,17 @@
+# SMJ-20181219-1100
 replicaCount: 1
 revisionHistoryLimit: 3
 
 image:
-  repository: lmenezes/cerebro
-  # Note: when updating the version, ensure `config` and the ConfigMap are kept
-  # in sync with the default configuration of the upstream image
-  tag: 0.8.1
+  repository: smjdockerhub/smj-kubeapps-cerebro
+  tag: latest
+#  repository: lmenezes/cerebro
+#  tag: 0.8.1
   pullPolicy: IfNotPresent
 
 service:
   type: LoadBalancer
-  port: 9001
+  port: 9000
   targetPort: 9000
   annotations: {}
   labels: {}

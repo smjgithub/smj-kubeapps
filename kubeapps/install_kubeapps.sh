@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+# This ClusterRoleBinding allows kubernetes-dashboard higher level permissions
+kubectl apply -f config/dashboard-admin.yaml
+
+kubectl -n kube-system create sa tiller
+kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+helm init --service-account tiller
+
 # Initialise the helm system by creating the Tiller control pod
 helm init
 

@@ -61,9 +61,9 @@ The following table lists the configurable parameters of the elasticsearch chart
 
 |              Parameter               |                             Description                             |                       Default                       |
 | ------------------------------------ | ------------------------------------------------------------------- | --------------------------------------------------- |
-| `appVersion`                         | Application Version (Elasticsearch)                                 | `6.5.0`                                             |
-| `image.repository`                   | Container image name                                                | `docker.elastic.co/elasticsearch/elasticsearch` |
-| `image.tag`                          | Container image tag                                                 | `6.5.0`                                             |
+| `appVersion`                         | Application Version (Elasticsearch)                                 | `6.4.3`                                             |
+| `image.repository`                   | Container image name                                                | `docker.elastic.co/elasticsearch/elasticsearch-oss` |
+| `image.tag`                          | Container image tag                                                 | `6.4.3`                                             |
 | `image.pullPolicy`                   | Container pull policy                                               | `IfNotPresent`                                      |
 | `initImage.repository`               | Init container image name                                           | `busybox`                                           |
 | `initImage.tag`                      | Init container image tag                                            | `latest`                                            |
@@ -74,20 +74,34 @@ The following table lists the configurable parameters of the elasticsearch chart
 | `cluster.keystoreSecret`             | Name of secret holding secure config options in an es keystore      | `nil`                                               |
 | `cluster.env`                        | Cluster environment variables                                       | `{MINIMUM_MASTER_NODES: "2"}`                       |
 | `cluster.additionalJavaOpts`         | Cluster parameters to be added to `ES_JAVA_OPTS` environment variable | `""`                                              |
-| `ingest.name`                        | ingest component name                                               | `ingest`                                            |
-| `ingest.replicas`                    | ingest node replicas (deployment)                                   | `2`                                                 |
-| `ingest.resources`                   | ingest node resources requests & limits                             | `{} - cpu limit must be an integer`                 |
-| `ingest.priorityClassName`           | ingest priorityClass                                                | `nil`                                               |
-| `ingest.heapSize`                    | ingest node heap size                                               | `512m`                                              |
-| `ingest.podAnnotations`              | ingest Deployment annotations                                       | `{}`                                                |
-| `ingest.nodeSelector`                | Node labels for ingest pod assignment                               | `{}`                                                |
-| `ingest.tolerations`                 | ingest tolerations                                                  | `[]`                                                |
-| `ingest.serviceAnnotations`          | ingest Service annotations                                          | `{}`                                                |
-| `ingest.serviceType`                 | ingest service type                                                 | `ClusterIP`                                         |
-| `ingest.loadBalancerIP`              | ingest loadBalancerIP                                               | `{}`                                                |
-| `ingest.loadBalancerSourceRanges`    | ingest loadBalancerSourceRanges                                     | `{}`                                                |
-| `ingest.antiAffinity`                | ingest anti-affinity policy                                         | `soft`                                              |
-| `ingest.nodeAffinity`                | ingest node affinity policy                                         | `{}`                                                |
+| `ingest.name`                        | Ingest component name                                               | `ingest`                                            |
+| `ingest.replicas`                    | Ingest node replicas (deployment)                                   | `2`                                                 |
+| `ingest.resources`                   | Ingest node resources requests & limits                             | `{} - cpu limit must be an integer`                 |
+| `ingest.priorityClassName`           | Ingest priorityClass                                                | `nil`                                               |
+| `ingest.heapSize`                    | Ingest node heap size                                               | `512m`                                              |
+| `ingest.podAnnotations`              | Ingest Deployment annotations                                       | `{}`                                                |
+| `ingest.nodeSelector`                | Node labels for Ingest pod assignment                               | `{}`                                                |
+| `ingest.tolerations`                 | Ingest tolerations                                                  | `[]`                                                |
+| `ingest.serviceAnnotations`          | Ingest Service annotations                                          | `{}`                                                |
+| `ingest.serviceType`                 | Ingest service type                                                 | `ClusterIP`                                         |
+| `ingest.loadBalancerIP`              | Ingest loadBalancerIP                                               | `{}`                                                |
+| `ingest.loadBalancerSourceRanges`    | Ingest loadBalancerSourceRanges                                     | `{}`                                                |
+| `ingest.antiAffinity`                | Ingest anti-affinity policy                                         | `soft`                                              |
+| `ingest.nodeAffinity`                | Ingest node affinity policy                                         | `{}`                                                |
+| `query.name`                         | Query component name                                                | `query`                                             |
+| `query.replicas`                     | Query node replicas (deployment)                                    | `2`                                                 |
+| `query.resources`                    | Query node resources requests & limits                              | `{} - cpu limit must be an integer`                 |
+| `query.priorityClassName`            | Query priorityClass                                                 | `nil`                                               |
+| `query.heapSize`                     | Query node heap size                                                | `512m`                                              |
+| `query.podAnnotations`               | Query Deployment annotations                                        | `{}`                                                |
+| `query.nodeSelector`                 | Node labels for Query pod assignment                                | `{}`                                                |
+| `query.tolerations`                  | Query tolerations                                                   | `[]`                                                |
+| `query.serviceAnnotations`           | Query Service annotations                                           | `{}`                                                |
+| `query.serviceType`                  | Query service type                                                  | `ClusterIP`                                         |
+| `query.loadBalancerIP`               | Query loadBalancerIP                                                | `{}`                                                |
+| `query.loadBalancerSourceRanges`     | Query loadBalancerSourceRanges                                      | `{}`                                                |
+| `query.antiAffinity`                 | Query anti-affinity policy                                          | `soft`                                              |
+| `query.nodeAffinity`                 | Query node affinity policy                                          | `{}`                                                |
 | `master.exposeHttp`                  | Expose http port 9200 on master Pods for monitoring, etc            | `false`                                             |
 | `master.name`                        | Master component name                                               | `master`                                            |
 | `master.replicas`                    | Master node replicas (deployment)                                   | `2`                                                 |
@@ -110,7 +124,7 @@ The following table lists the configurable parameters of the elasticsearch chart
 | `data.resources`                     | Data node resources requests & limits                               | `{} - cpu limit must be an integer`                 |
 | `data.priorityClassName`             | Data priorityClass                                                  | `nil`                                               |
 | `data.heapSize`                      | Data node heap size                                                 | `1536m`                                             |
-| `data.hooks.drain.enabled            | Data nodes: Enable drain pre-stop and post-start hook               | `true`                                              |
+| `data.hooks.drain.enabled`           | Data nodes: Enable drain pre-stop and post-start hook               | `true`                                              |
 | `data.persistence.enabled`           | Data persistent enabled/disabled                                    | `true`                                              |
 | `data.persistence.name`              | Data statefulset PVC template name                                  | `data`                                              |
 | `data.persistence.size`              | Data persistent volume size                                         | `30Gi`                                              |
@@ -184,7 +198,7 @@ Elasticsearch v5 terminology has updated, and now refers to a `ingest Node` as a
 
 More info: https://www.elastic.co/guide/en/elasticsearch/reference/5.5/modules-node.html#coordinating-node
 
-## Enabling elasticsearch internal monitoring
+## Enabling elasticsearch interal monitoring
 Requires version 6.3+ and standard non `oss` repository defined. Starting with 6.3 Xpack is partially free and enabled by default. You need to set a new config to enable the collection of these internal metrics. (https://www.elastic.co/guide/en/elasticsearch/reference/6.3/monitoring-settings.html)
 
 To do this through this helm chart override with the three following changes:

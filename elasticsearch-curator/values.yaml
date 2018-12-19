@@ -1,10 +1,11 @@
+# SMJ-20181211-1214
 # Default values for elasticsearch-curator.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
 cronjob:
   # At 01:00 every day
-  schedule: "0 1 * * *"
+  schedule: "*/5 * * * *"
   annotations: {}
   concurrencyPolicy: ""
   failedJobsHistoryLimit: ""
@@ -21,54 +22,81 @@ image:
 config:
   elasticsearch:
     hosts:
-      - CHANGEME.host
+      - elasticsearch-ingest
     port: 9200
 
 configMaps:
-  # Delete indices older than 7 days
+  config_yml: |-
+    client:
+      hosts:
+        - elasticsearch-ingest
+      port: 9200
+      url_prefix:
+      use_ssl: False
+      certificate:
+      client_cert:
+      client_key:
+      ssl_no_validate: False
+      http_auth:
+      timeout: 30
+      master_only: False
+    logging:
+      loglevel: INFO
+      logfile:
+      logformat: default
+      blacklist: ['elasticsearch', 'urllib3']
   action_file_yml: |-
-    ---
     actions:
       1:
-        action: delete_indices
-        description: "Clean up ES by deleting old indices"
+        action: snapshot
+        description: "Snapshot fluentd- indices between 5-10 minutes old (based on document 'time' field)"
         options:
-          timeout_override:
-          continue_if_exception: False
-          disable_action: False
+          repository: sky-es-hdfs
+          name: fluentd-%Y%m%d%H%M%S
+          ignore_unavailable: False
           ignore_empty_list: True
+          include_global_state: True
+          partial: False
+          wait_for_completion: True
+          skip_repo_fs_check: False
+          disable_action: True
         filters:
+        - filtertype: pattern
+          kind: prefix
+          value: fluentd-
         - filtertype: age
-          source: name
+          source: field_stats
           direction: older
-          timestring: '%Y.%m.%d'
-          unit: days
-          unit_count: 7
-          field:
-          stats_result:
-          epoch:
-          exclude: False
-  # Having config_yaml WILL override the other config
-  # config_yml: |-
-  #   ---
-  #   client:
-  #     hosts:
-  #       - elasticsearch-logging-cluster
-  #     port: 9200
-  #     url_prefix:
-  #     use_ssl: True
-  #     certificate:
-  #     client_cert:
-  #     client_key:
-  #     ssl_no_validate: True
-  #     http_auth:
-  #     timeout: 30
-  #     master_only: False
-  #   logging:
-  #     loglevel: INFO
-  #     logfile:
-  #     logformat: default
-  #     blacklist: ['elasticsearch', 'urllib3']
+          unit: minutes
+          unit_count: 5
+          field: 'time'
+          stats_result: min_value
+        - filtertype: age
+          source: field_stats
+          direction: younger
+          unit: minutes
+          unit_count: 10
+          field: 'time'
+          stats_result: min_value
+      2:
+        action: delete_indices
+        description: "Delete fluentd- indices older than 15 minutes (based on document 'time' field)"
+        options:
+          ignore_empty_list: True
+          timeout_override: 300
+          continue_if_exception: False
+          disable_action: True
+        filters:
+        - filtertype: pattern
+          kind: prefix
+          value: fluentd-
+        - filtertype: age
+          source: field_stats
+          direction: older
+          unit: minutes
+          unit_count: 15
+          field: 'time'
+          stats_result: min_value
 
 
 resources: {}
