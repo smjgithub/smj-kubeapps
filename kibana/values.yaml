@@ -1,7 +1,7 @@
-# SMJ-20181205-1615
+# SMJ-20181219-1100
 image:
-  repository: "smjdockerhub/smj-kubeapps-kibana"
-  tag: "latest"
+  repository: smjdockerhub/smj-kubeapps-kibana
+  tag: latest
 #  repository: "docker.elastic.co/kibana/kibana"
 #  tag: "6.5.0"
   pullPolicy: "IfNotPresent"

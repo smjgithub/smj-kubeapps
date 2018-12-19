@@ -36,8 +36,8 @@ podSecurityPolicy:
     # apparmor.security.beta.kubernetes.io/defaultProfileName: 'runtime/default'
 
 image:
-  repository: "smjdockerhub/smj-kubeapps-es"
-  tag: "latest"
+  repository: smjdockerhub/smj-kubeapps-es
+  tag: latest
   pullPolicy: "IfNotPresent"
   # If specified, use these secrets to access the image
   # pullSecrets:
