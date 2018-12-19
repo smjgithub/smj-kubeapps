@@ -67,7 +67,7 @@ cluster:
 
 ingest:
   name: ingest
-  replicas: 0
+  replicas: 1
   serviceType: ClusterIP
   loadBalancerIP: {}
   loadBalancerSourceRanges: {}
@@ -161,7 +161,7 @@ master:
 data:
   name: data
   exposeHttp: false
-  replicas: 1
+  replicas: 3
   heapSize: "512m"
   persistence:
     enabled: true
