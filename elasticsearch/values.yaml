@@ -161,7 +161,7 @@ master:
 data:
   name: data
   exposeHttp: false
-  replicas: 3
+  replicas: 2
   heapSize: "512m"
   persistence:
     enabled: true
