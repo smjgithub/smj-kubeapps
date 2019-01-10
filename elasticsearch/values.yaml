@@ -36,7 +36,7 @@ podSecurityPolicy:
     # apparmor.security.beta.kubernetes.io/defaultProfileName: 'runtime/default'
 
 image:
-  repository: smjdockerhub/smj-kubeapps-elastic
+  repository: 192.168.8.156:5000/smj-kubeapps-elastic
   tag: latest
   pullPolicy: "IfNotPresent"
   # If specified, use these secrets to access the image
@@ -46,7 +46,7 @@ image:
 initImage:
   repository: "busybox"
   tag: "latest"
-  pullPolicy: "Always"
+  pullPolicy: "IfNotPresent"
 
 cluster:
   name: "sky_elastic_01"

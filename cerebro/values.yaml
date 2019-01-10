@@ -3,7 +3,7 @@ replicaCount: 1
 revisionHistoryLimit: 3
 
 image:
-  repository: smjdockerhub/smj-kubeapps-cerebro
+  repository: 192.168.8.156:5000/smj-kubeapps-cerebro
   tag: latest
 #  repository: lmenezes/cerebro
 #  tag: 0.8.1
