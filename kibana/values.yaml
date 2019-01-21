@@ -1,4 +1,4 @@
-# SMJ-20181219-1100
+# SMJ-20190121-1528
 image:
   repository: 192.168.8.156:5000/smj-kubeapps-kibana
   tag: latest
@@ -24,7 +24,7 @@ files:
     ## Default Kibana configuration from kibana-docker.
     server.name: kibana
     server.host: "0"
-    elasticsearch.url: http://elasticsearch-query:9200
+    elasticsearch.url: http://elasticsearch-query:9202
 
     ## Custom config properties below
     ## Ref: https://www.elastic.co/guide/en/kibana/current/settings.html

@@ -3,7 +3,7 @@ entries:
   cerebro:
   - apiVersion: v1
     appVersion: 0.8.1
-    created: 2019-01-21T15:16:24.719348+03:00
+    created: 2019-01-21T15:28:33.668814+03:00
     description: A Helm chart for Cerebro - a web admin tool that replaces Kopf.
     digest: df1a740d1375c4e7f6a765fc4515028f6e9414b2607af808469b1c06d9192c2b
     home: https://github.com/lmenezes/cerebro
@@ -20,7 +20,7 @@ entries:
     version: 0.4.0
   elasticsearch:
   - appVersion: 6.5.3
-    created: 2019-01-21T15:16:24.722755+03:00
+    created: 2019-01-21T15:28:33.673745+03:00
     description: Flexible and powerful open source, distributed real-time search and
       analytics engine.
     digest: e5f73306826ee801121ea5780f5a80e6fa3b0fa244d626af79aa36807c78aa14
@@ -49,7 +49,7 @@ entries:
   elasticsearch-curator:
   - apiVersion: v1
     appVersion: 5.5.4
-    created: 2019-01-21T15:16:24.72459+03:00
+    created: 2019-01-21T15:28:33.676253+03:00
     description: A Helm chart for Elasticsearch Curator
     digest: e3fab31c9f2316e87edd28f434a78d33bb102e8a858f069faf62600930a46d3b
     home: https://github.com/elastic/curator
@@ -72,7 +72,7 @@ entries:
   elasticsearch-exporter:
   - apiVersion: v1
     appVersion: 1.0.2
-    created: 2019-01-21T15:16:24.725606+03:00
+    created: 2019-01-21T15:28:33.677951+03:00
     description: Elasticsearch stats exporter for Prometheus
     digest: f23df2e2bb95c8bc5e8398594cd7fb9bdb438218cfc0d9c8582d17541ea46202
     home: https://github.com/justwatchcom/elasticsearch_exporter
@@ -93,7 +93,7 @@ entries:
   fluentd:
   - apiVersion: v1
     appVersion: v2.3.1
-    created: 2019-01-21T15:16:24.728405+03:00
+    created: 2019-01-21T15:28:33.682312+03:00
     description: A Fluentd Elasticsearch Helm chart for Kubernetes.
     digest: 2cf78642cb1aa2da377999346cace0e0456c75dc0c1b9353c3ab95eb4585880e
     home: https://www.fluentd.org/
@@ -111,7 +111,7 @@ entries:
     version: 1.0.0
   grafana:
   - appVersion: 5.3.2
-    created: 2019-01-21T15:16:24.729748+03:00
+    created: 2019-01-21T15:28:33.684241+03:00
     description: The leading tool for querying and visualizing time series and metrics.
     digest: e28fcad92be8ece19d25af068dcc862dfa3708f25dfad2df8a971ee6f269946a
     engine: gotpl
@@ -132,7 +132,7 @@ entries:
   hadoop:
   - apiVersion: v1
     appVersion: 2.7.3
-    created: 2019-01-21T15:16:24.731468+03:00
+    created: 2019-01-21T15:28:33.686589+03:00
     description: The Apache Hadoop software library is a framework that allows for
       the distributed processing of large data sets across clusters of computers using
       simple programming models.
@@ -151,7 +151,7 @@ entries:
   heapster:
   - apiVersion: v1
     appVersion: 1.5.2
-    created: 2019-01-21T15:16:24.732491+03:00
+    created: 2019-01-21T15:28:33.687661+03:00
     description: Heapster enables Container Cluster Monitoring and Performance Analysis.
     digest: 719a7497cd4e571e6087da304d0369c9d5970d018f8a6b4018b13c4fd9f9380c
     engine: gotpl
@@ -172,7 +172,7 @@ entries:
     version: 0.3.2
   influxdb:
   - appVersion: "1.6"
-    created: 2019-01-21T15:16:24.733411+03:00
+    created: 2019-01-21T15:28:33.688567+03:00
     description: Scalable datastore for metrics, events, and real-time analytics.
     digest: ff77ba59a3388872f0ba5e18717d1d872f03d4d41d65f06eac92a7813f6b0f79
     engine: gotpl
@@ -192,9 +192,9 @@ entries:
     version: 0.12.1
   kibana:
   - appVersion: 6.4.3
-    created: 2019-01-21T15:16:24.742651+03:00
+    created: 2019-01-21T15:28:33.70717+03:00
     description: Kibana is an open source data visualization plugin for Elasticsearch
-    digest: 7f6b77d3aa75dea60f9e98c81c4c456a3c0927cf3ec0adba756f0f9cc20df3f3
+    digest: b92a74ce23c6e8ecbdbedf132afc4c2e612a87e027082990497e71ecfc732825
     engine: gotpl
     home: https://www.elastic.co/products/kibana
     icon: https://raw.githubusercontent.com/elastic/kibana/master/src/ui/public/icons/kibana-color.svg
@@ -213,7 +213,7 @@ entries:
   kube-state-metrics:
   - apiVersion: v1
     appVersion: 1.4.0
-    created: 2019-01-21T15:16:24.743294+03:00
+    created: 2019-01-21T15:28:33.707951+03:00
     description: Install kube-state-metrics to generate and expose cluster-level metrics
     digest: 6f2eed2e10eca76a9f43e0d2e3b31263781a4cacd5c895531be8feeec5848f8f
     home: https://github.com/kubernetes/kube-state-metrics/
@@ -232,7 +232,7 @@ entries:
     version: 0.11.0
   kubernetes-dashboard:
   - appVersion: 1.10.0
-    created: 2019-01-21T15:16:24.745234+03:00
+    created: 2019-01-21T15:28:33.710434+03:00
     description: General-purpose web UI for Kubernetes clusters
     digest: 573f4ad6a52c0c40780a9ac3c3bfb9378dfdc4532842ae8433b6fe229ec8b2ea
     home: https://github.com/kubernetes/dashboard
@@ -252,7 +252,7 @@ entries:
   metricbeat:
   - apiVersion: v1
     appVersion: 6.5.0
-    created: 2019-01-21T15:16:24.74717+03:00
+    created: 2019-01-21T15:28:33.714523+03:00
     description: A Helm chart to collect Kubernetes logs with metricbeat
     digest: 3285bfb1604c02a3d8fe496970933d57e9d37c1034548d1f15b484a0cece94d7
     home: https://www.elastic.co/products/beats/metricbeat
@@ -270,7 +270,7 @@ entries:
     version: 0.3.3
   prometheus:
   - appVersion: 2.5.0
-    created: 2019-01-21T15:16:24.749012+03:00
+    created: 2019-01-21T15:28:33.716353+03:00
     description: Prometheus is a monitoring system and time series database.
     digest: 5dd09267c0f9429036c0383d5d798ae593599b0db37dc23e2dac7e8ef6927fa6
     engine: gotpl
@@ -294,7 +294,7 @@ entries:
     version: 7.4.1
   weave-scope:
   - appVersion: 1.9.1
-    created: 2019-01-21T15:16:24.750609+03:00
+    created: 2019-01-21T15:28:33.717971+03:00
     description: A Helm chart for the Weave Scope cluster visualizer.
     digest: 4bb0b09533c0458ebca5193e71cb9d2102247a7a34fc133fb26039fcb211df7f
     home: https://www.weave.works/oss/scope/
@@ -312,4 +312,4 @@ entries:
     urls:
     - weave-scope/weave-scope-0.10.0.tgz
     version: 0.10.0
-generated: 2019-01-21T15:16:24.717383+03:00
+generated: 2019-01-21T15:28:33.664389+03:00
