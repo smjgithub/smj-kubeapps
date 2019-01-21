@@ -1,4 +1,4 @@
-# SMJ-20181219-1100
+# SMJ-20190121-1243
 # Default values for elasticsearch.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -134,7 +134,7 @@ master:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "0.5Gi"
+    size: "0.25Gi"
     # storageClass: "ssd"
   antiAffinity: "soft"
   nodeAffinity: {}
@@ -167,7 +167,7 @@ data:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "1Gi"
+    size: "0.5Gi"
     # storageClass: "ssd"
   terminationGracePeriodSeconds: 3600
   antiAffinity: "soft"
