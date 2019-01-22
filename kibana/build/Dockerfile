@@ -15,3 +15,5 @@ FROM docker.elastic.co/kibana/kibana:6.5.3
 #RUN rm -rf /usr/share/kibana/optimize/bundles
 
 MAINTAINER steve@webtura.co.uk
+
+CMD ["/usr/share/kibana/bin/kibana-docker"]
