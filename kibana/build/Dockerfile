@@ -16,4 +16,4 @@ FROM docker.elastic.co/kibana/kibana:6.5.3
 
 MAINTAINER steve@webtura.co.uk
 
-CMD ["/usr/share/kibana/bin/kibana-docker"]
+CMD ["/usr/share/kibana/bin/kibana"]
