@@ -16,7 +16,7 @@ metadata:
 spec:
   ports:
     - name: http
-      port: 9200
+      port: 9201
       targetPort: http
   selector:
     app: {{ template "elasticsearch.name" . }}

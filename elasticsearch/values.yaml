@@ -1,4 +1,4 @@
-# SMJ-20181219-1100
+# SMJ-20190122-1237
 # Default values for elasticsearch.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -36,7 +36,7 @@ podSecurityPolicy:
     # apparmor.security.beta.kubernetes.io/defaultProfileName: 'runtime/default'
 
 image:
-  repository: smjdockerhub/smj-kubeapps-elastic
+  repository: 192.168.8.156:5000/smj-kubeapps-elastic
   tag: latest
   pullPolicy: "IfNotPresent"
   # If specified, use these secrets to access the image
@@ -46,7 +46,7 @@ image:
 initImage:
   repository: "busybox"
   tag: "latest"
-  pullPolicy: "Always"
+  pullPolicy: "IfNotPresent"
 
 cluster:
   name: "sky_elastic_01"
@@ -68,7 +68,7 @@ cluster:
 ingest:
   name: ingest
   replicas: 1
-  serviceType: ClusterIP
+  serviceType: LoadBalancer
   loadBalancerIP: {}
   loadBalancerSourceRanges: {}
   ## (dict) If specified, apply these annotations to the ingest service
@@ -98,7 +98,7 @@ ingest:
 query:
   name: query
   replicas: 1
-  serviceType: ClusterIP
+  serviceType: LoadBalancer
   loadBalancerIP: {}
   loadBalancerSourceRanges: {}
   ## (dict) If specified, apply these annotations to the query service
@@ -134,7 +134,7 @@ master:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "0.5Gi"
+    size: "0.25Gi"
     # storageClass: "ssd"
   antiAffinity: "soft"
   nodeAffinity: {}
@@ -167,7 +167,7 @@ data:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "1Gi"
+    size: "0.5Gi"
     # storageClass: "ssd"
   terminationGracePeriodSeconds: 3600
   antiAffinity: "soft"

@@ -1,9 +1,9 @@
-# SMJ-20181219-1100
+# SMJ-20190121-1515
 replicaCount: 1
 revisionHistoryLimit: 3
 
 image:
-  repository: smjdockerhub/smj-kubeapps-cerebro
+  repository: 192.168.8.156:5000/smj-kubeapps-cerebro
   tag: latest
 #  repository: lmenezes/cerebro
 #  tag: 0.8.1
@@ -41,9 +41,9 @@ config:
   basePath: '/'
   restHistorySize: 50
   hosts:
-    - host: "http://elasticsearch-ingest:9200"
+    - host: "http://elasticsearch-ingest:9201"
       name: "SKY Elastic Cluster 01 (Ingest Nodes)"
-    - host: "http://elasticsearch-query:9200"
+    - host: "http://elasticsearch-query:9202"
       name: "SKY Elastic Cluster 01 (Query Nodes)"
 
   # Secret used to sign session cookies. If empty it will be replaced with a
