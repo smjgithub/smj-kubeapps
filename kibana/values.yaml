@@ -1,4 +1,4 @@
-# SMJ-20190121-1528
+# SMJ-20190124-1114
 image:
   repository: 192.168.8.156:5000/smj-kubeapps-kibana
   tag: latest
