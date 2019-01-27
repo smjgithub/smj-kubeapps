@@ -5,7 +5,7 @@
 # name: value
 
 image:
-  repository: 192.168.8.156:5000/smj-kubeapps-k8s-dashboard
+  repository: smj-kubeapps/smj-kubeapps-k8s-dashboard
   tag: latest
 #  repository: k8s.gcr.io/kubernetes-dashboard-amd64
 #  tag: v1.10.0

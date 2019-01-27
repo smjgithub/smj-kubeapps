@@ -36,7 +36,7 @@ podSecurityPolicy:
     # apparmor.security.beta.kubernetes.io/defaultProfileName: 'runtime/default'
 
 image:
-  repository: 192.168.8.156:5000/smj-kubeapps-elastic
+  repository: smj-kubeapps/smj-kubeapps-elastic
   tag: latest
   pullPolicy: "IfNotPresent"
   # If specified, use these secrets to access the image
@@ -74,18 +74,18 @@ ingest:
   ## (dict) If specified, apply these annotations to the ingest service
   #  serviceAnnotations:
   #    example: ingest-svc-foo
-  heapSize: "512m"
+  heapSize: "32g"
   antiAffinity: "soft"
   nodeAffinity: {}
   nodeSelector: {}
   tolerations: []
   resources:
     limits:
-      cpu: "1"
+      cpu: "8"
       # memory: "1024Mi"
     requests:
       cpu: "25m"
-      memory: "512Mi"
+      memory: "64Gi"
   priorityClassName: ""
   ## (dict) If specified, apply these annotations to each ingest Pod
   # podAnnotations:
@@ -104,18 +104,18 @@ query:
   ## (dict) If specified, apply these annotations to the query service
   #  serviceAnnotations:
   #    example: query-svc-foo
-  heapSize: "512m"
+  heapSize: "32g"
   antiAffinity: "soft"
   nodeAffinity: {}
   nodeSelector: {}
   tolerations: []
   resources:
     limits:
-      cpu: "1"
+      cpu: "8"
       # memory: "1024Mi"
     requests:
       cpu: "25m"
-      memory: "512Mi"
+      memory: "64Gi"
   priorityClassName: ""
   ## (dict) If specified, apply these annotations to each query Pod
   # podAnnotations:
@@ -129,24 +129,24 @@ master:
   name: master
   exposeHttp: false
   replicas: 3
-  heapSize: "512m"
+  heapSize: "8g"
   persistence:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "0.25Gi"
-    # storageClass: "ssd"
+    size: "1i"
+    storageClass: "local-storage"
   antiAffinity: "soft"
   nodeAffinity: {}
   nodeSelector: {}
   tolerations: []
   resources:
     limits:
-      cpu: "1"
+      cpu: "4"
       # memory: "1024Mi"
     requests:
       cpu: "25m"
-      memory: "512Mi"
+      memory: "16Gi"
   priorityClassName: ""
   ## (dict) If specified, apply these annotations to each master Pod
   # podAnnotations:
@@ -167,8 +167,8 @@ data:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "0.5Gi"
-    # storageClass: "ssd"
+    size: "2.5Ti"
+    storageClass: "llocal-storage"
   terminationGracePeriodSeconds: 3600
   antiAffinity: "soft"
   nodeAffinity: {}
@@ -176,11 +176,11 @@ data:
   tolerations: []
   resources:
     limits:
-      cpu: "1"
+      cpu: "8"
       # memory: "2048Mi"
     requests:
       cpu: "25m"
-      memory: "1536Mi"
+      memory: "64Gi"
   priorityClassName: ""
   ## (dict) If specified, apply these annotations to each data Pod
   # podAnnotations:
