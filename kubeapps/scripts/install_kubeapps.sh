@@ -20,7 +20,7 @@ echo ""
 echo "Installing Kubeapps..."
 
 # Install the kubeapps chart with initial custom chart repository
-helm install --name kubeapps --namespace kubeapps -f config/custom-values.yaml bitnami/kubeapps
+helm install --name kubeapps --namespace kubeapps -f ../config/custom-values.yaml bitnami/kubeapps
 
 kubectl create serviceaccount kubeapps-operator
 kubectl create clusterrolebinding kubeapps-operator --clusterrole=cluster-admin --serviceaccount=default:kubeapps-operator
