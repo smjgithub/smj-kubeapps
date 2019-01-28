@@ -1,11 +1,12 @@
-# SMJ-20181219-1100
+# SMJ-20190128-1015
 # Default values for kubernetes-dashboard
 # This is a YAML-formatted file.
 # Declare name/value pairs to be passed into your templates.
 # name: value
 
 image:
-  repository: smj-kubeapps/smj-kubeapps-k8s-dashboard
+  repository: smjdockerhub/smj-kubeapps-k8s-dashboard
+#  repository: 192.168.8.156:5000/smj-kubeapps-k8s-dashboard
   tag: latest
 #  repository: k8s.gcr.io/kubernetes-dashboard-amd64
 #  tag: v1.10.0
