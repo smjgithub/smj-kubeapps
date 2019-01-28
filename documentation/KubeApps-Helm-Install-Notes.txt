@@ -1,0 +1,335 @@
+ElasticSearch on Kubernetes Deployment using Helm Charts
+========================================================
+
+kubectl apply -f ../config/dashboard-admin.yaml
+
+clusterrolebinding.rbac.authorization.k8s.io/kubernetes-dashboard created
+
+kubectl -n kube-system create sa tiller
+
+serviceaccount/tiller created
+
+kubectl create clusterrolebinding tiller --clusterrole cluster-admin --serviceaccount=kube-system:tiller
+
+clusterrolebinding.rbac.authorization.k8s.io/tiller created
+
+helm init --service-account tiller
+
+$HELM_HOME has been configured at /Users/stevejones/.helm.
+
+Tiller (the Helm server-side component) has been installed into your Kubernetes Cluster.
+
+Please note: by default, Tiller is deployed with an insecure 'allow unauthenticated users' policy.
+To prevent this, run `helm init` with the --tiller-tls-verify flag.
+For more information on securing your installation see: https://docs.helm.sh/using_helm/#securing-your-helm-installation
+Happy Helming!
+
+helm install --name kubeapps --namespace kubeapps -f ../config/custom-values.yaml bitnami/kubeapps
+
+NAME:   kubeapps
+LAST DEPLOYED: Mon Jan 28 11:27:59 2019
+NAMESPACE: kubeapps
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/ConfigMap
+NAME                                AGE
+kubeapps-internal-dashboard-config  4s
+kubeapps-frontend-config            4s
+
+==> v1beta1/RoleBinding
+kubeapps-internal-apprepository-controller  4s
+kubeapps-internal-tiller-proxy              4s
+
+==> v1/Service
+kubeapps-mongodb                4s
+kubeapps-internal-chartsvc      4s
+kubeapps-internal-dashboard     4s
+kubeapps                        4s
+kubeapps-internal-tiller-proxy  4s
+
+==> v1alpha1/AppRepository
+smj-kubeapps  0s
+
+==> v1/Pod(related)
+
+NAME                                                        READY  STATUS             RESTARTS  AGE
+kubeapps-mongodb-8694b4b9f6-psxqj                           0/1    ContainerCreating  0         4s
+kubeapps-internal-apprepository-controller-d96d47d54-m62j9  1/1    Running            0         4s
+kubeapps-internal-chartsvc-59d6545464-dqjdq                 0/1    ContainerCreating  0         4s
+kubeapps-internal-chartsvc-59d6545464-fmg2s                 0/1    ContainerCreating  0         4s
+kubeapps-internal-dashboard-866b6dcb8f-5ppdt                0/1    ContainerCreating  0         4s
+kubeapps-internal-dashboard-866b6dcb8f-ghrq7                0/1    ContainerCreating  0         4s
+kubeapps-5d68ff58f8-f2gcx                                   0/1    ContainerCreating  0         4s
+kubeapps-5d68ff58f8-w79tl                                   0/1    ContainerCreating  0         4s
+kubeapps-internal-tiller-proxy-77b6b5546d-f2h9l             1/1    Running            0         4s
+kubeapps-internal-tiller-proxy-77b6b5546d-h87gt             0/1    ContainerCreating  0         4s
+
+==> v1/ServiceAccount
+
+NAME                                        AGE
+kubeapps-internal-apprepository-controller  4s
+kubeapps-internal-tiller-proxy              4s
+
+==> v1beta1/Role
+kubeapps-internal-apprepository-controller  4s
+kubeapps-internal-tiller-proxy              4s
+
+==> v1beta1/Deployment
+kubeapps-mongodb  4s
+
+==> v1beta2/Deployment
+kubeapps-internal-apprepository-controller  4s
+kubeapps-internal-chartsvc                  4s
+kubeapps-internal-dashboard                 4s
+kubeapps                                    4s
+kubeapps-internal-tiller-proxy              4s
+
+
+NOTES:
+** Please be patient while the chart is being deployed **
+
+Tip:
+
+  Watch the deployment status using the command: kubectl get pods -w --namespace kubeapps
+
+Kubeapps can be accessed via port 80 on the following DNS name from within your cluster:
+
+   kubeapps.kubeapps.svc.cluster.local
+
+To access Kubeapps from outside your K8s cluster, follow the steps below:
+
+1. Get the Kubeapps URL by running these commands:
+
+   echo "Kubeapps URL: http://127.0.0.1:8080"
+   export POD_NAME=$(kubectl get pods --namespace kubeapps -l "app=kubeapps" -o jsonpath="{.items[0].metadata.name}")
+   kubectl port-forward --namespace kubeapps $POD_NAME 8080:8080
+
+2. Open a browser and access Kubeapps using the obtained URL.
+
+kubectl create serviceaccount kubeapps-operator
+
+serviceaccount/kubeapps-operator created
+
+kubectl create clusterrolebinding kubeapps-operator --clusterrole=cluster-admin --serviceaccount=default:kubeapps-operator
+
+clusterrolebinding.rbac.authorization.k8s.io/kubeapps-operator created
+
+NOW OBTAIN THE SECRET TOKEN AND SERVE ON PORT 8080
+
+export SECRET=$(kubectl get secret $(kubectl get serviceaccount kubeapps-operator -o jsonpath='{.secrets[].name}') -o jsonpath='{.data.token}' | base64 --decode)
+
+echo "Secret Token = $SECRET"
+
+Secret Token = eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2VhY2NvdW50Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9uYW1lc3BhY2UiOiJkZWZhdWx0Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZWNyZXQubmFtZSI6Imt1YmVhcHBzLW9wZXJhdG9yLXRva2VuLW44ZHg5Iiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQubmFtZSI6Imt1YmVhcHBzLW9wZXJhdG9yIiwia3ViZXJuZXRlcy5pby9zZXJ2aWNlYWNjb3VudC9zZXJ2aWNlLWFjY291bnQudWlkIjoiYmJhOTUxNjAtMjJkNi0xMWU5LTg2YTMtMDI1MDAwMDAwMDAxIiwic3ViIjoic3lzdGVtOnNlcnZpY2VhY2NvdW50OmRlZmF1bHQ6a3ViZWFwcHMtb3BlcmF0b3IifQ.dUxgKaP7G0oBNXajYcQ9VxizZ57f5UT93FRYOSKK6OSrDRaGojYKyaJalbnTSnbpFGFwxaOV1x9SLlKuLbo1nRkNSQ62oajhFQLUxKcLAhbg_MMVbzJAHkPET24byIQ3ikBLRfxO4zhdbIFbeder1v4YE_vaaFlCRasvB1RVgGkVSu7H7Tsh9vHtsIsgqsGW8xyvdLT1JLQR6RkvIuZ_H_NsLzxO8L7XywJSkP24lRL3gKoa6C5-YWpgHwiwM9CDfnsVzUUEqArulD2e2wp4jZFOd9atawpCZVneSu6q39odeGsFa0r4FIfc2CS-JRMFbSSMS5td6VpUtE1pzTyfvw
+
+echo "Kubeapps URL: http://127.0.0.1:8080"
+export POD_NAME=$(kubectl get pods --namespace kubeapps -l "app=kubeapps" -o jsonpath="{.items[0].metadata.name}")
+kubectl port-forward --namespace kubeapps $POD_NAME 8080:8080
+
+Kubeapps URL: http://127.0.0.1:8080
+Steves-MBP-5:scripts stevejones$ export POD_NAME=$(kubectl get pods --namespace kubeapps -l "app=kubeapps" -o jsonpath="{.items[0].metadata.name}")
+Steves-MBP-5:scripts stevejones$ kubectl port-forward --namespace kubeapps $POD_NAME 8080:8080
+Forwarding from 127.0.0.1:8080 -> 8080
+Forwarding from [::1]:8080 -> 8080
+
+Browser: http://localhost:8080
+
+Now install Kubernetes Dashboard
+
+cd kubernetes-dashboard
+helm install --name kubernetes-dashboard --namespace kube-system -f values.yaml .
+
+NAME:   kubernetes-dashboard
+LAST DEPLOYED: Mon Jan 28 11:35:10 2019
+NAMESPACE: kube-system
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1beta1/RoleBinding
+NAME                  AGE
+kubernetes-dashboard  0s
+
+==> v1/Service
+kubernetes-dashboard  0s
+
+==> v1beta1/Deployment
+kubernetes-dashboard  0s
+
+==> v1/Pod(related)
+
+NAME                                   READY  STATUS             RESTARTS  AGE
+kubernetes-dashboard-7d47c7b6c9-2tcxp  0/1    ContainerCreating  0         0s
+
+==> v1/Secret
+
+NAME                  AGE
+kubernetes-dashboard  0s
+
+==> v1/ServiceAccount
+kubernetes-dashboard  0s
+
+==> v1beta1/Role
+kubernetes-dashboard  0s
+
+
+NOTES:
+*********************************************************************************
+*** PLEASE BE PATIENT: kubernetes-dashboard may take a few minutes to install ***
+*********************************************************************************
+
+Get the Kubernetes Dashboard URL by running:
+  export POD_NAME=$(kubectl get pods -n kube-system -l "app=kubernetes-dashboard,release=kubernetes-dashboard" -o jsonpath="{.items[0].metadata.name}")
+  echo https://127.0.0.1:8443/
+  kubectl -n kube-system port-forward $POD_NAME 8443:8443
+
+
+kubectl proxy
+
+Browser: http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#!/overview?namespace=_all
+
+ElasticSearch
+=============
+
+cd elasticsearch
+helm install --name elasticsearch --namespace default -f values.yaml .
+
+NAME:   elasticsearch
+LAST DEPLOYED: Mon Jan 28 11:40:26 2019
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/ConfigMap
+NAME           AGE
+elasticsearch  0s
+
+==> v1/ServiceAccount
+elasticsearch-data    0s
+elasticsearch-ingest  0s
+elasticsearch-master  0s
+elasticsearch-query   0s
+
+==> v1/Service
+elasticsearch-ingest     0s
+elasticsearch-discovery  0s
+elasticsearch-query      0s
+
+==> v1beta1/Deployment
+elasticsearch-ingest  0s
+elasticsearch-query   0s
+
+==> v1beta1/StatefulSet
+elasticsearch-data    0s
+elasticsearch-master  0s
+
+==> v1/Pod(related)
+
+NAME                                   READY  STATUS    RESTARTS  AGE
+elasticsearch-ingest-74457576bd-6hjnv  0/1    Init:0/1  0         0s
+elasticsearch-query-7b557c4bc-zsmhb    0/1    Init:0/1  0         0s
+elasticsearch-data-0                   0/1    Pending   0         0s
+elasticsearch-master-0                 0/1    Pending   0         0s
+
+
+NOTES:
+The elasticsearch cluster has been installed.
+
+Elasticsearch can be accessed:
+
+  * Within your cluster, at the following DNS name at port 9200:
+
+    elasticsearch-ingest.default.svc
+
+  * From outside the cluster, run these commands in the same shell:
+
+     WARNING: You have likely exposed your Elasticsearch cluster direct to the internet.
+              Elasticsearch does not implement any security for public facing clusters by default.
+              As a minimum level of security; switch to ClusterIP/NodePort and place an Nginx gateway infront of the cluster in order to lock down access to dangerous HTTP endpoints and verbs.
+
+     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+           You can watch the status of by running 'kubectl get svc -w elasticsearch-ingest'
+
+    export SERVICE_IP=$(kubectl get svc --namespace default elasticsearch-ingest -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+    echo http://$SERVICE_IP:9200
+
+Cerebro
+=======
+
+cd cerebro
+helm install --name cerebro --namespace default -f values.yaml .
+
+NAME:   cerebro
+LAST DEPLOYED: Mon Jan 28 11:50:42 2019
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/Service
+NAME     AGE
+cerebro  0s
+
+==> v1/Deployment
+cerebro  0s
+
+==> v1/Pod(related)
+
+NAME                     READY  STATUS    RESTARTS  AGE
+cerebro-f7658b85d-t6vk9  0/1    Init:0/1  0         0s
+
+==> v1/ConfigMap
+
+NAME     AGE
+cerebro  0s
+
+
+NOTES:
+1. Get the application URL by running these commands:
+     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+           You can watch the status of by running 'kubectl get svc -w cerebro'
+  export SERVICE_IP=$(kubectl get svc --namespace default cerebro -o jsonpath='{.status.loadBalancer.ingress[0].ip}')
+  echo http://$SERVICE_IP:9000
+
+Browser: http://localhost:9000
+
+Kibana
+======
+
+cd kibana
+helm install --name kibana --namespace default -f values.yaml .
+
+NAME:   kibana
+LAST DEPLOYED: Mon Jan 28 11:51:55 2019
+NAMESPACE: default
+STATUS: DEPLOYED
+
+RESOURCES:
+==> v1/Service
+NAME    AGE
+kibana  0s
+
+==> v1beta1/Deployment
+kibana  0s
+
+==> v1/Pod(related)
+
+NAME                     READY  STATUS             RESTARTS  AGE
+kibana-5dd6894cc9-2sdrk  0/1    ContainerCreating  0         0s
+
+==> v1/ConfigMap
+
+NAME    AGE
+kibana  0s
+
+
+NOTES:
+To verify that kibana has started, run:
+
+  kubectl --namespace=default get pods -l "app=kibana"
+
+Kibana can be accessed:
+
+  * From outside the cluster, run these commands in the same shell:
+
+Browser: http://localhost:5601
+
