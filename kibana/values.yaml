@@ -1,6 +1,7 @@
-# SMJ-20190124-1114
+# SMJ-20190128-1014
 image:
-  repository: 192.168.8.156:5000/smj-kubeapps-kibana
+  repository: smjdockerhub/smj-kubeapps-kibana
+#  repository: 192.168.8.156:5000/smj-kubeapps-kibana
   tag: latest
 #  repository: "docker.elastic.co/kibana/kibana"
 #  tag: "6.5.0"
