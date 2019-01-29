@@ -4,7 +4,7 @@ metadata:
   name: es-1-vol1
 spec:
   capacity:
-    storage: 2500Gi
+    storage: 2.5Ti
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain

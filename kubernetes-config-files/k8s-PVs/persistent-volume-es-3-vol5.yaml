@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: es-3-vol1
+  name: es-3-vol5
 spec:
   capacity:
-    storage: 2.5Ti
+    storage: 1Ti
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
   storageClassName: local-storage
   local:
-    path: /mnt/data1/vol1
+    path: /mnt/data1/vol5
   nodeAffinity:
     required:
       nodeSelectorTerms:

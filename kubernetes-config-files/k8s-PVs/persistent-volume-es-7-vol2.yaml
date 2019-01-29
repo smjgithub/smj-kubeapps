@@ -4,7 +4,7 @@ metadata:
   name: es-7-vol2
 spec:
   capacity:
-    storage: 2500Gi
+    storage: 2.5Ti
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Retain
