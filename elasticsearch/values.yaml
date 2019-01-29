@@ -1,4 +1,4 @@
-# SMJ-20190129-1008
+# SMJ-20190128-1013
 # Default values for elasticsearch.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
@@ -75,18 +75,18 @@ ingest:
   ## (dict) If specified, apply these annotations to the ingest service
   #  serviceAnnotations:
   #    example: ingest-svc-foo
-  heapSize: "32g"
+  heapSize: "512m"
   antiAffinity: "soft"
   nodeAffinity: {}
   nodeSelector: {}
   tolerations: []
   resources:
     limits:
-      cpu: "8"
+      cpu: "1"
       # memory: "1024Mi"
     requests:
       cpu: "25m"
-      memory: "64Gi"
+      memory: "512Mi"
   priorityClassName: ""
   ## (dict) If specified, apply these annotations to each ingest Pod
   # podAnnotations:
@@ -105,18 +105,18 @@ query:
   ## (dict) If specified, apply these annotations to the query service
   #  serviceAnnotations:
   #    example: query-svc-foo
-  heapSize: "32g"
+  heapSize: "512m"
   antiAffinity: "soft"
   nodeAffinity: {}
   nodeSelector: {}
   tolerations: []
   resources:
     limits:
-      cpu: "8"
+      cpu: "1"
       # memory: "1024Mi"
     requests:
       cpu: "25m"
-      memory: "64Gi"
+      memory: "512Mi"
   priorityClassName: ""
   ## (dict) If specified, apply these annotations to each query Pod
   # podAnnotations:
@@ -130,24 +130,24 @@ master:
   name: master
   exposeHttp: false
   replicas: 3
-  heapSize: "8g"
+  heapSize: "512m"
   persistence:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "1i"
-    storageClass: "local-storage"
+    size: "0.25Gi"
+    # storageClass: "ssd"
   antiAffinity: "soft"
   nodeAffinity: {}
   nodeSelector: {}
   tolerations: []
   resources:
     limits:
-      cpu: "4"
+      cpu: "1"
       # memory: "1024Mi"
     requests:
       cpu: "25m"
-      memory: "16Gi"
+      memory: "512Mi"
   priorityClassName: ""
   ## (dict) If specified, apply these annotations to each master Pod
   # podAnnotations:
@@ -168,8 +168,8 @@ data:
     enabled: true
     accessMode: ReadWriteOnce
     name: data
-    size: "2.5Ti"
-    storageClass: "local-storage"
+    size: "0.5Gi"
+    # storageClass: "ssd"
   terminationGracePeriodSeconds: 3600
   antiAffinity: "soft"
   nodeAffinity: {}
@@ -177,11 +177,11 @@ data:
   tolerations: []
   resources:
     limits:
-      cpu: "8"
+      cpu: "1"
       # memory: "2048Mi"
     requests:
       cpu: "25m"
-      memory: "64Gi"
+      memory: "1536Mi"
   priorityClassName: ""
   ## (dict) If specified, apply these annotations to each data Pod
   # podAnnotations:
