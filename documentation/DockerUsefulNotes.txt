@@ -51,3 +51,8 @@ sudo docker run -d -e ENV_DOCKER_REGISTRY_HOST=192.168.8.156 -e ENV_DOCKER_REGIS
 kubectl cluster-info
 
 kubectl describe node docker-for-desktop
+
+Removing Tags
+
+docker rmi hello-world:v1
+

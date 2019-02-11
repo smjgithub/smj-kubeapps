@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: elasticsearch-hq-svc
+  labels:
+    app: elasticsearch-hq
+    kubernetes.io/cluster-service: "true"
+    kubernetes.io/name: "Elastic-HQ"
+spec:
+  ports:
+  - name: ui
+    port: 5000
+    protocol: TCP
+    targetPort: ui
+  selector:
+    app: elasticsearch-hq
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: elasticsearch-hq
+  name: elasticsearch-hq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: elasticsearch-hq
+  template:
+    metadata:
+      labels:
+        app: elasticsearch-hq
+    spec:
+      containers:
+      - image: elastichq/elasticsearch-hq
+        imagePullPolicy: Always
+        name: elasticsearch-hq
+        ports:
+        - name: ui
+          containerPort: 5000
+          protocol: TCP
+        stdin: true
+        tty: true
